@@ -1,0 +1,449 @@
+items:
+  - name: str
+    description: "字符串定义"
+    code: |
+      fn main() {
+          let name = "World";
+          println!("Hello, {}!", name);
+      }
+    output: "Hello, World!"
+    comment: "字符串使用双引号"
+
+  - name: int
+    description: "整数定义"
+    code: |
+      fn main() {
+          let age: i32 = 25;
+          println!("{}", age);
+      }
+    output: "25"
+    comment: "需要明确指定整数类型"
+
+  - name: float
+    description: "浮点数定义"
+    code: |
+      fn main() {
+          let pi: f64 = 3.14159;
+          println!("{}", pi);
+      }
+    output: "3.14159"
+    comment: "默认 f64 类型"
+
+  - name: bool
+    description: "布尔值定义"
+    code: |
+      fn main() {
+          let is_active: bool = true;
+          let is_deleted: bool = false;
+          println!("{}", is_active);
+      }
+    output: "true"
+    comment: "布尔值小写"
+
+  - name: list
+    description: "列表创建和访问"
+    code: |
+      fn main() {
+          let fruits = vec!["apple", "banana", "cherry"];
+          println!("{}", fruits[0]);
+      }
+    output: "apple"
+    comment: "Vec 是动态数组"
+
+  - name: list_slice
+    description: "列表切片"
+    code: |
+      fn main() {
+          let fruits = vec!["apple", "banana", "cherry"];
+          println!("{:?}", &fruits[1..3]);
+      }
+    output: '["banana", "cherry"]'
+    comment: "切片语法 [start..end]"
+
+  - name: list_append
+    description: "列表添加元素"
+    code: |
+      fn main() {
+          let mut fruits = vec!["apple"];
+          fruits.push("banana");
+          println!("{:?}", fruits);
+      }
+    output: '["apple", "banana"]'
+    comment: "push 在末尾添加元素"
+
+  - name: list_comprehension
+    description: "列表推导式"
+    code: |
+      fn main() {
+          let squares: Vec<i32> = (0..5).map(|x| x * x).collect();
+          println!("{:?}", squares);
+      }
+    output: "[0, 1, 4, 9, 16]"
+    comment: "使用迭代器方法链"
+
+  - name: dict
+    description: "字典创建和访问"
+    code: |
+      use std::collections::HashMap;
+      
+      fn main() {
+          let mut person = HashMap::new();
+          person.insert("name", "Alice");
+          person.insert("age", &30);
+          println!("{:?}", person.get("name"));
+      }
+    output: 'Some("Alice")'
+    comment: "HashMap 是键值对"
+
+  - name: dict_get
+    description: "字典安全访问"
+    code: |
+      use std::collections::HashMap;
+      
+      fn main() {
+          let mut person = HashMap::new();
+          person.insert("age", 30);
+          let age = person.get("age").unwrap_or(&0);
+          println!("{}", age);
+      }
+    output: "30"
+    comment: "unwrap_or 提供默认值"
+
+  - name: dict_comprehension
+    description: "字典推导式"
+    code: |
+      use std::collections::HashMap;
+      
+      fn main() {
+          let squares: HashMap<i32, i32> = (0..5)
+              .map(|x| (x, x * x))
+              .collect();
+          println!("{:?}", squares);
+      }
+    output: "{0: 0, 1: 1, 2: 4, 3: 9, 4: 16}"
+    comment: "使用迭代器构建"
+
+  - name: set
+    description: "集合创建和操作"
+    code: |
+      use std::collections::HashSet;
+      
+      fn main() {
+          let mut colors = HashSet::new();
+          colors.insert("red");
+          colors.insert("blue");
+          colors.insert("red");
+          println!("{}", colors.len());
+      }
+    output: "2"
+    comment: "HashSet 自动去重"
+
+  - name: set_add
+    description: "集合添加元素"
+    code: |
+      use std::collections::HashSet;
+      
+      fn main() {
+          let mut colors = HashSet::new();
+          colors.insert("red");
+          colors.insert("blue");
+          println!("{}", colors.len());
+      }
+    output: "2"
+    comment: "insert 方法添加元素"
+
+  - name: if_stmt
+    description: "条件语句"
+    code: |
+      fn main() {
+          let x = 10;
+          if x > 5 {
+              println!("Big");
+          } else {
+              println!("Small");
+          }
+      }
+    output: "Big"
+    comment: "使用大括号表示代码块"
+
+  - name: if_elif_else
+    description: "多条件语句"
+    code: |
+      fn main() {
+          let score = 85;
+          let grade = if score >= 90 {
+              "A"
+          } else if score >= 80 {
+              "B"
+          } else {
+              "C"
+          };
+          println!("{}", grade);
+      }
+    output: "B"
+    comment: "else if 表示 elif"
+
+  - name: ternary
+    description: "三元运算符"
+    code: |
+      fn main() {
+          let age = 20;
+          let status = if age >= 18 { "adult" } else { "minor" };
+          println!("{}", status);
+      }
+    output: "adult"
+    comment: "if 表达式作为三元运算符"
+
+  - name: for_loop
+    description: "for 循环"
+    code: |
+      fn main() {
+          for i in 0..3 {
+              println!("{}", i);
+          }
+      }
+    output: "0\n1\n2"
+    comment: "for in 遍历范围"
+
+  - name: for_dict
+    description: "遍历字典"
+    code: |
+      use std::collections::HashMap;
+      
+      fn main() {
+          let mut person = HashMap::new();
+          person.insert("name", "Alice");
+          person.insert("age", 30);
+          for (key, value) in &person {
+              println!("{}: {:?}", key, value);
+          }
+      }
+    output: "name: \"Alice\"\nage: 30"
+    comment: "遍历 HashMap"
+
+  - name: while_loop
+    description: "while 循环"
+    code: |
+      fn main() {
+          let mut i = 0;
+          while i < 3 {
+              println!("{}", i);
+              i += 1;
+          }
+      }
+    output: "0\n1\n2"
+    comment: "while 循环条件控制"
+
+  - name: break_continue
+    description: "break 和 continue"
+    code: |
+      fn main() {
+          for i in 0..5 {
+              if i == 2 { continue; }
+              if i == 4 { break; }
+              println!("{}", i);
+          }
+      }
+    output: "0\n1\n3"
+    comment: "continue 跳过，break 退出"
+
+  - name: function_def
+    description: "函数定义"
+    code: |
+      fn greet(name: &str) -> String {
+          format!("Hello, {}!", name)
+      }
+      
+      fn main() {
+          println!("{}", greet("World"));
+      }
+    output: "Hello, World!"
+    comment: "需要声明参数和返回类型"
+
+  - name: function_params
+    description: "函数默认参数"
+    code: |
+      fn greet(name: &str, greeting: &str) -> String {
+          format!("{}, {}!", greeting, name)
+      }
+      
+      fn main() {
+          println!("{}", greet("Alice", "Hello"));
+      }
+    output: "Hello, Alice!"
+    comment: "Rust 不支持默认参数，显式传入"
+
+  - name: function_args_kwargs
+    description: "可变参数"
+    code: |
+      fn func_args(args: &[i32]) {
+          println!("{:?}", args);
+      }
+      
+      fn main() {
+          func_args(&[1, 2]);
+      }
+    output: "[1, 2]"
+    comment: "使用 slice 接受参数"
+
+  - name: lambda
+    description: "lambda 函数"
+    code: |
+      fn main() {
+          let square = |x: i32| x * x;
+          println!("{}", square(5));
+      }
+    output: "25"
+    comment: "闭包语法"
+
+  - name: class_def
+    description: "类定义"
+    code: |
+      struct Person {
+          name: String,
+      }
+      
+      fn main() {
+          let p = Person { name: String::from("Alice") };
+          println!("{}", p.name);
+      }
+    output: "Alice"
+    comment: "Rust 使用 struct"
+
+  - name: class_method
+    description: "类方法"
+    code: |
+      struct Person {
+          name: String,
+      }
+      
+      impl Person {
+          fn greet(&self) -> String {
+              format!("Hello, {}!", self.name)
+          }
+      }
+      
+      fn main() {
+          let p = Person { name: String::from("Alice") };
+          println!("{}", p.greet());
+      }
+    output: "Hello, Alice!"
+    comment: "impl 块中定义方法"
+
+  - name: class_inheritance
+    description: "类继承"
+    code: |
+      trait Animal {
+          fn speak(&self) -> String;
+      }
+      
+      struct Dog {}
+      
+      impl Animal for Dog {
+          fn speak(&self) -> String {
+              String::from("Woof!")
+          }
+      }
+      
+      fn main() {
+          let d = Dog {};
+          println!("{}", d.speak());
+      }
+    output: "Woof!"
+    comment: "Rust 使用 trait 替代继承"
+
+  - name: class_property
+    description: "属性装饰器"
+    code: |
+      struct Circle {
+          _radius: f64,
+      }
+      
+      impl Circle {
+          fn radius(&self) -> f64 {
+              self._radius
+          }
+      }
+      
+      fn main() {
+          let c = Circle { _radius: 5.0 };
+          println!("{}", c.radius());
+      }
+    output: "5"
+    comment: "使用 getter 方法"
+
+  - name: try_stmt
+    description: "异常处理"
+    code: |
+      use std::error::Error;
+      
+      fn main() -> Result<(), Box<dyn Error>> {
+          Err("Cannot divide by zero")?;
+          Ok(())
+      }
+    output: "Err(\"Cannot divide by zero\")"
+    comment: "使用 Result 类型"
+
+  - name: try_finally
+    description: "finally 块"
+    code: |
+      fn main() {
+          println!("Try block");
+          println!("Finally block");
+      }
+    output: "Try block\nFinally block"
+    comment: "代码顺序执行"
+
+  - name: raise_exception
+    description: "抛出异常"
+    code: |
+      fn validate_age(age: i32) -> Result<(), String> {
+          if age < 0 {
+              Err(String::from("Invalid age"))
+          } else {
+              Ok(())
+          }
+      }
+      
+      fn main() {
+          match validate_age(-1) {
+              Err(e) => println!("{}", e),
+              _ => {}
+          }
+      }
+    output: "Invalid age"
+    comment: "返回 Err"
+
+  - name: import_stmt
+    description: "导入模块"
+    code: |
+      use std::f64::consts::PI;
+      
+      fn main() {
+          println!("{}", PI);
+      }
+    output: "3.14159..."
+    comment: "使用 use 导入"
+
+  - name: import_from
+    description: "从模块导入"
+    code: |
+      use std::f64::consts::PI;
+      
+      fn main() {
+          let pi = PI;
+          println!("{}", pi);
+      }
+    output: "3.14159..."
+    comment: "导入特定常量"
+
+  - name: import_as
+    description: "导入别名"
+    code: |
+      use std::f64::consts::PI as PI_ALIAS;
+      
+      fn main() {
+          println!("{}", PI_ALIAS);
+      }
+    output: "3.14159..."
+    comment: "使用 as 别名"

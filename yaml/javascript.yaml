@@ -1,0 +1,349 @@
+items:
+  - name: str
+    description: "字符串定义"
+    code: |
+      const name = "World";
+      console.log(`Hello, ${name}!`);
+    output: "Hello, World!"
+    comment: "字符串使用单引号、双引号或反引号"
+
+  - name: int
+    description: "整数定义"
+    code: |
+      const age = 25;
+      console.log(age);
+    output: "25"
+    comment: "JavaScript 只有 Number 类型"
+
+  - name: float
+    description: "浮点数定义"
+    code: |
+      const pi = 3.14159;
+      console.log(pi);
+    output: "3.14159"
+    comment: "浮点数和整数都是 Number"
+
+  - name: bool
+    description: "布尔值定义"
+    code: |
+      const isActive = true;
+      const isDeleted = false;
+      console.log(isActive);
+    output: "true"
+    comment: "布尔值小写"
+
+  - name: list
+    description: "列表创建和访问"
+    code: |
+      const fruits = ["apple", "banana", "cherry"];
+      console.log(fruits[0]);
+    output: "apple"
+    comment: "数组是可变的有序集合"
+
+  - name: list_slice
+    description: "列表切片"
+    code: |
+      const fruits = ["apple", "banana", "cherry"];
+      console.log(fruits.slice(1, 3));
+    output: "['banana', 'cherry']"
+    comment: "slice 方法不修改原数组"
+
+  - name: list_append
+    description: "列表添加元素"
+    code: |
+      const fruits = ["apple"];
+      fruits.push("banana");
+      console.log(fruits);
+    output: "['apple', 'banana']"
+    comment: "push 方法在末尾添加元素"
+
+  - name: list_comprehension
+    description: "列表推导式"
+    code: |
+      const squares = [...Array(5).keys()].map(x => x * x);
+      console.log(squares);
+    output: "[0, 1, 4, 9, 16]"
+    comment: "使用 map 替代推导式"
+
+  - name: dict
+    description: "字典创建和访问"
+    code: |
+      const person = {name: "Alice", age: 30};
+      console.log(person.name);
+    output: "Alice"
+    comment: "对象使用键值对存储"
+
+  - name: dict_get
+    description: "字典安全访问"
+    code: |
+      const person = {name: "Alice"};
+      console.log(person.age ?? 0);
+    output: "0"
+    comment: "?? 提供默认值"
+
+  - name: dict_comprehension
+    description: "字典推导式"
+    code: |
+      const squares = Object.fromEntries([...Array(5).keys()].map(x => [x, x * x]));
+      console.log(squares);
+    output: "{0: 0, 1: 1, 2: 4, 3: 9, 4: 16}"
+    comment: "使用 fromEntries 和 map"
+
+  - name: set
+    description: "集合创建和操作"
+    code: |
+      const colors = new Set(["red", "blue", "red"]);
+      console.log(colors.size);
+    output: "2"
+    comment: "Set 自动去重"
+
+  - name: set_add
+    description: "集合添加元素"
+    code: |
+      const colors = new Set(["red"]);
+      colors.add("blue");
+      console.log(colors);
+    output: "Set {'red', 'blue'}"
+    comment: "add 方法添加元素"
+
+  - name: if_stmt
+    description: "条件语句"
+    code: |
+      const x = 10;
+      if (x > 5) {
+          console.log("Big");
+      } else {
+          console.log("Small");
+      }
+    output: "Big"
+    comment: "使用大括号表示代码块"
+
+  - name: if_elif_else
+    description: "多条件语句"
+    code: |
+      const score = 85;
+      let grade;
+      if (score >= 90) {
+          grade = "A";
+      } else if (score >= 80) {
+          grade = "B";
+      } else {
+          grade = "C";
+      }
+      console.log(grade);
+    output: "B"
+    comment: "else if 表示 elif"
+
+  - name: ternary
+    description: "三元运算符"
+    code: |
+      const age = 20;
+      const status = age >= 18 ? "adult" : "minor";
+      console.log(status);
+    output: "adult"
+    comment: "? : 条件表达式"
+
+  - name: for_loop
+    description: "for 循环"
+    code: |
+      for (let i = 0; i < 3; i++) {
+          console.log(i);
+      }
+    output: "0\n1\n2"
+    comment: "标准 for 循环语法"
+
+  - name: for_dict
+    description: "遍历字典"
+    code: |
+      const person = {name: "Alice", age: 30};
+      for (const [key, value] of Object.entries(person)) {
+          console.log(`${key}: ${value}`);
+      }
+    output: "name: Alice\nage: 30"
+    comment: "Object.entries 返回键值对"
+
+  - name: while_loop
+    description: "while 循环"
+    code: |
+      let i = 0;
+      while (i < 3) {
+          console.log(i);
+          i++;
+      }
+    output: "0\n1\n2"
+    comment: "while 循环条件控制"
+
+  - name: break_continue
+    description: "break 和 continue"
+    code: |
+      for (let i = 0; i < 5; i++) {
+          if (i === 2) continue;
+          if (i === 4) break;
+          console.log(i);
+      }
+    output: "0\n1\n3"
+    comment: "continue 跳过，break 退出"
+
+  - name: function_def
+    description: "函数定义"
+    code: |
+      function greet(name) {
+          return `Hello, ${name}!`;
+      }
+      console.log(greet("World"));
+    output: "Hello, World!"
+    comment: "使用 function 关键字定义"
+
+  - name: function_params
+    description: "函数默认参数"
+    code: |
+      function greet(name, greeting = "Hello") {
+          return `${greeting}, ${name}!`;
+      }
+      console.log(greet("Alice"));
+    output: "Hello, Alice!"
+    comment: "参数可以设置默认值"
+
+  - name: function_args_kwargs
+    description: "可变参数"
+    code: |
+      function func(...args) {
+          console.log(args);
+      }
+      const kwargs = {name: "Alice"};
+      console.log(kwargs);
+    output: "[1, 2]\n{name: 'Alice'}"
+    comment: "...args 位置参数"
+
+  - name: lambda
+    description: "lambda 函数"
+    code: |
+      const square = x => x * x;
+      console.log(square(5));
+    output: "25"
+    comment: "箭头函数"
+
+  - name: class_def
+    description: "类定义"
+    code: |
+      class Person {
+          constructor(name) {
+              this.name = name;
+          }
+      }
+      const p = new Person("Alice");
+      console.log(p.name);
+    output: "Alice"
+    comment: "使用 class 关键字"
+
+  - name: class_method
+    description: "类方法"
+    code: |
+      class Person {
+          constructor(name) {
+              this.name = name;
+          }
+          greet() {
+              return `Hello, ${this.name}!`;
+          }
+      }
+      const p = new Person("Alice");
+      console.log(p.greet());
+    output: "Hello, Alice!"
+    comment: "this 表示实例本身"
+
+  - name: class_inheritance
+    description: "类继承"
+    code: |
+      class Animal {
+          speak() {}
+      }
+      class Dog extends Animal {
+          speak() {
+              return "Woof!";
+          }
+      }
+      const d = new Dog();
+      console.log(d.speak());
+    output: "Woof!"
+    comment: "extends 指定父类"
+
+  - name: class_property
+    description: "属性装饰器"
+    code: |
+      class Circle {
+          constructor(radius) {
+              this._radius = radius;
+          }
+          get radius() {
+              return this._radius;
+          }
+      }
+      const c = new Circle(5);
+      console.log(c.radius);
+    output: "5"
+    comment: "get 创建只读属性"
+
+  - name: try_stmt
+    description: "异常处理"
+    code: |
+      try {
+          const result = 10 / 0;
+      } catch (e) {
+          console.log("Cannot divide by zero");
+      }
+    output: "Cannot divide by zero"
+    comment: "捕获异常"
+
+  - name: try_finally
+    description: "finally 块"
+    code: |
+      try {
+          console.log("Try block");
+      } catch (e) {
+          console.log("Catch block");
+      } finally {
+          console.log("Finally block");
+      }
+    output: "Try block\nFinally block"
+    comment: "finally 无论是否异常都执行"
+
+  - name: raise_exception
+    description: "抛出异常"
+    code: |
+      function validateAge(age) {
+          if (age < 0) {
+              throw new Error("Invalid age");
+          }
+      }
+      try {
+          validateAge(-1);
+      } catch (e) {
+          console.log(e.message);
+      }
+    output: "Invalid age"
+    comment: "throw 抛出异常"
+
+  - name: import_stmt
+    description: "导入模块"
+    code: |
+      import * as math from 'math';
+      console.log(math.sqrt(16));
+    output: "4.0"
+    comment: "导入整个模块"
+
+  - name: import_from
+    description: "从模块导入"
+    code: |
+      import { sqrt } from 'math';
+      console.log(sqrt(16));
+    output: "4.0"
+    comment: "导入特定函数"
+
+  - name: import_as
+    description: "导入别名"
+    code: |
+      import math as m from 'math';
+      console.log(m.sqrt(16));
+    output: "4.0"
+    comment: "使用 as 创建别名"

@@ -1,0 +1,594 @@
+items:
+  - name: str
+    description: "字符串定义"
+    code: |
+      #include <iostream>
+      #include <string>
+      using namespace std;
+      
+      int main() {
+          string name = "World";
+          cout << "Hello, " << name << "!" << endl;
+          return 0;
+      }
+    output: "Hello, World!"
+    comment: "需要包含 <string> 头文件"
+
+  - name: int
+    description: "整数定义"
+    code: |
+      #include <iostream>
+      using namespace std;
+      
+      int main() {
+          int age = 25;
+          cout << age << endl;
+          return 0;
+      }
+    output: "25"
+    comment: "需要明确指定整数类型"
+
+  - name: float
+    description: "浮点数定义"
+    code: |
+      #include <iostream>
+      using namespace std;
+      
+      int main() {
+          double pi = 3.14159;
+          cout << pi << endl;
+          return 0;
+      }
+    output: "3.14159"
+    comment: "double 是默认浮点类型"
+
+  - name: bool
+    description: "布尔值定义"
+    code: |
+      #include <iostream>
+      using namespace std;
+      
+      int main() {
+          bool isActive = true;
+          bool isDeleted = false;
+          cout << isActive << endl;
+          return 0;
+      }
+    output: "1"
+    comment: "bool 输出为 1 或 0"
+
+  - name: list
+    description: "列表创建和访问"
+    code: |
+      #include <iostream>
+      #include <vector>
+      #include <string>
+      using namespace std;
+      
+      int main() {
+          vector<string> fruits = {"apple", "banana", "cherry"};
+          cout << fruits[0] << endl;
+          return 0;
+      }
+    output: "apple"
+    comment: "vector 是动态数组"
+
+  - name: list_slice
+    description: "列表切片"
+    code: |
+      #include <iostream>
+      #include <vector>
+      #include <algorithm>
+      using namespace std;
+      
+      int main() {
+          vector<int> v = {0, 1, 2, 3, 4};
+          vector<int> sliced(v.begin() + 1, v.begin() + 3);
+          for (int x : sliced) cout << x << " ";
+          return 0;
+      }
+    output: "1 2 "
+    comment: "使用迭代器进行切片"
+
+  - name: list_append
+    description: "列表添加元素"
+    code: |
+      #include <iostream>
+      #include <vector>
+      using namespace std;
+      
+      int main() {
+          vector<string> fruits = {"apple"};
+          fruits.push_back("banana");
+          cout << fruits[0] << " " << fruits[1] << endl;
+          return 0;
+      }
+    output: "apple banana"
+    comment: "push_back 在末尾添加元素"
+
+  - name: list_comprehension
+    description: "列表推导式"
+    code: |
+      #include <iostream>
+      #include <vector>
+      using namespace std;
+      
+      int main() {
+          vector<int> squares;
+          for (int i = 0; i < 5; i++) {
+              squares.push_back(i * i);
+          }
+          for (int x : squares) cout << x << " ";
+          return 0;
+      }
+    output: "0 1 4 9 16 "
+    comment: "使用循环替代推导式"
+
+  - name: dict
+    description: "字典创建和访问"
+    code: |
+      #include <iostream>
+      #include <map>
+      #include <string>
+      using namespace std;
+      
+      int main() {
+          map<string, int> person = {{"name", 0}, {"age", 30}};
+          cout << person["age"] << endl;
+          return 0;
+      }
+    output: "30"
+    comment: "map 是键值对容器"
+
+  - name: dict_get
+    description: "字典安全访问"
+    code: |
+      #include <iostream>
+      #include <map>
+      using namespace std;
+      
+      int main() {
+          map<string, int> person = {{"age", 30}};
+          int age = person.count("age") ? person["age"] : 0;
+          cout << age << endl;
+          return 0;
+      }
+    output: "30"
+    comment: "使用 count 检查键是否存在"
+
+  - name: dict_comprehension
+    description: "字典推导式"
+    code: |
+      #include <iostream>
+      #include <map>
+      using namespace std;
+      
+      int main() {
+          map<int, int> squares;
+          for (int i = 0; i < 5; i++) {
+              squares[i] = i * i;
+          }
+          for (auto const& [key, val] : squares) {
+              cout << key << ": " << val << " ";
+          }
+          return 0;
+      }
+    output: "0: 0 1: 1 2: 4 3: 9 4: 16 "
+    comment: "使用循环构建"
+
+  - name: set
+    description: "集合创建和操作"
+    code: |
+      #include <iostream>
+      #include <unordered_set>
+      using namespace std;
+      
+      int main() {
+          unordered_set<string> colors = {"red", "blue", "red"};
+          cout << colors.size() << endl;
+          return 0;
+      }
+    output: "2"
+    comment: "unordered_set 自动去重"
+
+  - name: set_add
+    description: "集合添加元素"
+    code: |
+      #include <iostream>
+      #include <unordered_set>
+      using namespace std;
+      
+      int main() {
+          unordered_set<string> colors = {"red"};
+          colors.insert("blue");
+          cout << colors.size() << endl;
+          return 0;
+      }
+    output: "2"
+    comment: "insert 方法添加元素"
+
+  - name: if_stmt
+    description: "条件语句"
+    code: |
+      #include <iostream>
+      using namespace std;
+      
+      int main() {
+          int x = 10;
+          if (x > 5) {
+              cout << "Big" << endl;
+          } else {
+              cout << "Small" << endl;
+          }
+          return 0;
+      }
+    output: "Big"
+    comment: "使用大括号表示代码块"
+
+  - name: if_elif_else
+    description: "多条件语句"
+    code: |
+      #include <iostream>
+      using namespace std;
+      
+      int main() {
+          int score = 85;
+          string grade;
+          if (score >= 90) {
+              grade = "A";
+          } else if (score >= 80) {
+              grade = "B";
+          } else {
+              grade = "C";
+          }
+          cout << grade << endl;
+          return 0;
+      }
+    output: "B"
+    comment: "else if 表示 elif"
+
+  - name: ternary
+    description: "三元运算符"
+    code: |
+      #include <iostream>
+      using namespace std;
+      
+      int main() {
+          int age = 20;
+          string status = age >= 18 ? "adult" : "minor";
+          cout << status << endl;
+          return 0;
+      }
+    output: "adult"
+    comment: "? : 条件表达式"
+
+  - name: for_loop
+    description: "for 循环"
+    code: |
+      #include <iostream>
+      using namespace std;
+      
+      int main() {
+          for (int i = 0; i < 3; i++) {
+              cout << i << endl;
+          }
+          return 0;
+      }
+    output: "0\n1\n2"
+    comment: "标准 for 循环语法"
+
+  - name: for_dict
+    description: "遍历字典"
+    code: |
+      #include <iostream>
+      #include <map>
+      using namespace std;
+      
+      int main() {
+          map<string, int> person = {{"name", 0}, {"age", 30}};
+          for (auto const& [key, value] : person) {
+              cout << key << ": " << value << endl;
+          }
+          return 0;
+      }
+    output: "age: 30\nname: 0"
+    comment: "结构化绑定遍历"
+
+  - name: while_loop
+    description: "while 循环"
+    code: |
+      #include <iostream>
+      using namespace std;
+      
+      int main() {
+          int i = 0;
+          while (i < 3) {
+              cout << i << endl;
+              i++;
+          }
+          return 0;
+      }
+    output: "0\n1\n2"
+    comment: "while 循环条件控制"
+
+  - name: break_continue
+    description: "break 和 continue"
+    code: |
+      #include <iostream>
+      using namespace std;
+      
+      int main() {
+          for (int i = 0; i < 5; i++) {
+              if (i == 2) continue;
+              if (i == 4) break;
+              cout << i << endl;
+          }
+          return 0;
+      }
+    output: "0\n1\n3"
+    comment: "continue 跳过，break 退出"
+
+  - name: function_def
+    description: "函数定义"
+    code: |
+      #include <iostream>
+      #include <string>
+      using namespace std;
+      
+      string greet(string name) {
+          return "Hello, " + name + "!";
+      }
+      
+      int main() {
+          cout << greet("World") << endl;
+          return 0;
+      }
+    output: "Hello, World!"
+    comment: "需要声明返回类型和参数类型"
+
+  - name: function_params
+    description: "函数默认参数"
+    code: |
+      #include <iostream>
+      #include <string>
+      using namespace std;
+      
+      string greet(string name, string greeting = "Hello") {
+          return greeting + ", " + name + "!";
+      }
+      
+      int main() {
+          cout << greet("Alice") << endl;
+          return 0;
+      }
+    output: "Hello, Alice!"
+    comment: "参数可以设置默认值"
+
+  - name: function_args_kwargs
+    description: "可变参数"
+    code: |
+      #include <iostream>
+      #include <initializer_list>
+      using namespace std;
+      
+      void func(initializer_list<int> args) {
+          for (int x : args) {
+              cout << x << " ";
+          }
+          cout << endl;
+      }
+      
+      int main() {
+          func({1, 2});
+          return 0;
+      }
+    output: "1 2 "
+    comment: "initializer_list 接受可变参数"
+
+  - name: lambda
+    description: "lambda 函数"
+    code: |
+      #include <iostream>
+      using namespace std;
+      
+      int main() {
+          auto square = [](int x) { return x * x; };
+          cout << square(5) << endl;
+          return 0;
+      }
+    output: "25"
+    comment: "使用 [] 捕获列表"
+
+  - name: class_def
+    description: "类定义"
+    code: |
+      #include <iostream>
+      #include <string>
+      using namespace std;
+      
+      class Person {
+      public:
+          string name;
+          Person(string n) : name(n) {}
+      };
+      
+      int main() {
+          Person p("Alice");
+          cout << p.name << endl;
+          return 0;
+      }
+    output: "Alice"
+    comment: "使用 class 关键字"
+
+  - name: class_method
+    description: "类方法"
+    code: |
+      #include <iostream>
+      #include <string>
+      using namespace std;
+      
+      class Person {
+      public:
+          string name;
+          Person(string n) : name(n) {}
+          string greet() {
+              return "Hello, " + name + "!";
+          }
+      };
+      
+      int main() {
+          Person p("Alice");
+          cout << p.greet() << endl;
+          return 0;
+      }
+    output: "Hello, Alice!"
+    comment: "成员函数在类内定义"
+
+  - name: class_inheritance
+    description: "类继承"
+    code: |
+      #include <iostream>
+      using namespace std;
+      
+      class Animal {
+      public:
+          virtual string speak() = 0;
+      };
+      
+      class Dog : public Animal {
+      public:
+          string speak() override {
+              return "Woof!";
+          }
+      };
+      
+      int main() {
+          Dog d;
+          cout << d.speak() << endl;
+          return 0;
+      }
+    output: "Woof!"
+    comment: "使用 public 继承，override 重写"
+
+  - name: class_property
+    description: "属性装饰器"
+    code: |
+      #include <iostream>
+      using namespace std;
+      
+      class Circle {
+      private:
+          double _radius;
+      public:
+          Circle(double r) : _radius(r) {}
+          double radius() const { return _radius; }
+      };
+      
+      int main() {
+          Circle c(5);
+          cout << c.radius() << endl;
+          return 0;
+      }
+    output: "5"
+    comment: "使用 getter 方法"
+
+  - name: try_stmt
+    description: "异常处理"
+    code: |
+      #include <iostream>
+      using namespace std;
+      
+      int main() {
+          try {
+              throw runtime_error("Cannot divide by zero");
+          } catch (const exception& e) {
+              cout << e.what() << endl;
+          }
+          return 0;
+      }
+    output: "Cannot divide by zero"
+    comment: "使用 try-catch 捕获异常"
+
+  - name: try_finally
+    description: "finally 块"
+    code: |
+      #include <iostream>
+      using namespace std;
+      
+      int main() {
+          try {
+              cout << "Try block" << endl;
+          } catch (...) {
+              cout << "Catch block" << endl;
+          }
+          cout << "Finally block" << endl;
+          return 0;
+      }
+    output: "Try block\nFinally block"
+    comment: "没有 finally，代码在 catch 后执行"
+
+  - name: raise_exception
+    description: "抛出异常"
+    code: |
+      #include <iostream>
+      using namespace std;
+      
+      void validate_age(int age) {
+          if (age < 0) {
+              throw invalid_argument("Invalid age");
+          }
+      }
+      
+      int main() {
+          try {
+              validate_age(-1);
+          } catch (const invalid_argument& e) {
+              cout << e.what() << endl;
+          }
+          return 0;
+      }
+    output: "Invalid age"
+    comment: "throw 抛出异常"
+
+  - name: import_stmt
+    description: "导入模块"
+    code: |
+      #include <iostream>
+      #include <cmath>
+      using namespace std;
+      
+      int main() {
+          cout << sqrt(16) << endl;
+          return 0;
+      }
+    output: "4"
+    comment: "使用 #include 包含头文件"
+
+  - name: import_from
+    description: "从模块导入"
+    code: |
+      #include <iostream>
+      #include <cmath>
+      using namespace std;
+      
+      int main() {
+          using std::sqrt;
+          cout << sqrt(16) << endl;
+          return 0;
+      }
+    output: "4"
+    comment: "using 导入特定函数"
+
+  - name: import_as
+    description: "导入别名"
+    code: |
+      #include <iostream>
+      #include <cmath>
+      namespace m = std;
+      
+      int main() {
+          cout << m::sqrt(16) << endl;
+          return 0;
+      }
+    output: "4"
+    comment: "namespace 别名"
