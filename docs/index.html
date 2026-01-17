@@ -22,7 +22,11 @@
             background: var(--bg-color);
             color: var(--text-color);
             margin: 0;
-            padding: 20px;
+            padding: 20px 20px 20px 20px;
+        }
+
+        .sidebar-open body {
+            padding-left: 260px;
         }
         
         .container {
@@ -180,7 +184,92 @@
             padding: 40px;
             color: #999;
         }
-        
+
+        .toggle-nav-btn {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 1001;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            padding: 14px 16px;
+            cursor: pointer;
+            font-size: 20px;
+            color: var(--text-color);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transition: all 0.2s ease;
+        }
+
+        .toggle-nav-btn:hover {
+            background: var(--bg-color);
+            border-color: var(--accent-color);
+        }
+
+        .toggle-nav-btn .hamburger::before {
+            content: "☰";
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 240px;
+            height: 100vh;
+            background: var(--card-bg);
+            border-right: 1px solid var(--border-color);
+            box-shadow: 2px 0 8px rgba(0,0,0,0.1);
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+            overflow-y: auto;
+        }
+
+        .sidebar.open {
+            transform: translateX(0);
+        }
+
+        .sidebar-header {
+            padding: 20px;
+            border-bottom: 1px solid var(--border-color);
+            background: #fafafa;
+        }
+
+        .sidebar-header h3 {
+            margin: 0;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        .sidebar-nav {
+            list-style: none;
+            padding: 10px 0;
+            margin: 0;
+        }
+
+        .sidebar-nav li a {
+            display: block;
+            padding: 10px 20px;
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 14px;
+            transition: background 0.2s ease, color 0.2s ease;
+            border-left: 3px solid transparent;
+            font-family: 'Courier New', monospace;
+        }
+
+        .sidebar-nav li a:hover {
+            background: var(--bg-color);
+            color: var(--accent-color);
+        }
+
+        .sidebar-nav li a.active {
+            background: #f0f8ff;
+            color: var(--accent-color);
+            border-left-color: var(--accent-color);
+        }
+
         @media (max-width: 1024px) {
             .comparison-header {
                 grid-template-columns: 1fr;
@@ -206,6 +295,17 @@
     </style>
 </head>
 <body>
+    <button class="toggle-nav-btn" id="toggle-nav" aria-label="Toggle navigation">
+        <span class="hamburger"></span>
+    </button>
+    
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h3>语法索引</h3>
+        </div>
+        <ul class="sidebar-nav" id="sidebar-nav"></ul>
+    </nav>
+    
     <div class="container">
         <div class="header">
             <div class="title">🐍 语法对比学习</div>
@@ -284,7 +384,7 @@
                 const rightItem = rightData[itemName];
                 
                 if (leftItem || rightItem) {
-                    html += '<div class="item">';
+                    html += '<div class="item" id="item-' + itemName + '">';
                     html += '<div class="item-header">';
                     html += '<span class="item-name">' + escapeHtml(itemName) + '</span>';
                     if (leftItem) {
@@ -341,8 +441,88 @@
         document.getElementById('left-lang').addEventListener('change', updatePanels);
         document.getElementById('right-lang').addEventListener('change', updatePanels);
         
+        // 侧边栏功能
+        function generateSidebarNav() {
+            const nav = document.getElementById('sidebar-nav');
+            nav.innerHTML = '';
+            
+            orderedNames.forEach(itemName => {
+                const li = document.createElement('li');
+                const a = document.createElement('a');
+                a.href = '#item-' + itemName;
+                a.textContent = itemName;
+                a.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.getElementById('item-' + itemName);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        
+                        // 点击后自动关闭侧边栏
+                        document.body.classList.remove('sidebar-open');
+                        document.getElementById('sidebar').classList.remove('open');
+                    }
+                    
+                    // 更新激活状态
+                    document.querySelectorAll('.sidebar-nav a').forEach(link => {
+                        link.classList.remove('active');
+                    });
+                    a.classList.add('active');
+                });
+                
+                li.appendChild(a);
+                nav.appendChild(li);
+            });
+        }
+        
+        // 切换侧边栏
+        document.getElementById('toggle-nav').addEventListener('click', function() {
+            document.body.classList.toggle('sidebar-open');
+            document.getElementById('sidebar').classList.toggle('open');
+        });
+        
+        // 滚动监听
+        function updateActiveNavItem() {
+            const items = document.querySelectorAll('.item');
+            const navLinks = document.querySelectorAll('.sidebar-nav a');
+            
+            let currentItem = null;
+            
+            items.forEach(item => {
+                const rect = item.getBoundingClientRect();
+                if (rect.top <= 100 && rect.bottom >= 100) {
+                    currentItem = item;
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (currentItem && link.getAttribute('href') === '#' + currentItem.id) {
+                    link.classList.add('active');
+                }
+            });
+        }
+        
+        let ticking = false;
+        window.addEventListener('scroll', function() {
+            if (!ticking) {
+                window.requestAnimationFrame(function() {
+                    updateActiveNavItem();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+        
+        // 重写 updatePanels 以包含导航栏更新
+        const originalUpdatePanels = updatePanels;
+        updatePanels = function() {
+            originalUpdatePanels();
+            generateSidebarNav();
+        };
+        
         // 初始化
         updatePanels();
+        generateSidebarNav();
     </script>
 </body>
 </html>
