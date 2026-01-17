@@ -1,0 +1,344 @@
+items:
+  - name: str
+    description: "字符串定义"
+    code: |
+      name="World"
+      echo "Hello, $name!"
+    output: "Hello, World!"
+    comment: "双引号支持变量插值"
+
+  - name: int
+    description: "整数定义"
+    code: |
+      age=25
+      echo $age
+    output: "25"
+    comment: "所有变量默认都是字符串"
+
+  - name: float
+    description: "浮点数定义"
+    code: |
+      pi=3.14159
+      echo $pi
+    output: "3.14159"
+    comment: "浮点数使用外部工具计算"
+
+  - name: bool
+    description: "布尔值定义"
+    code: |
+      is_active=1
+      is_deleted=0
+      echo $is_active
+    output: "1"
+    comment: "使用 0/1 或 true/false 字符串"
+
+  - name: list
+    description: "数组创建和访问"
+    code: |
+      fruits=("apple" "banana" "cherry")
+      echo ${fruits[0]}
+    output: "apple"
+    comment: "数组使用 0 开始的索引"
+
+  - name: list_slice
+    description: "数组切片"
+    code: |
+      fruits=("apple" "banana" "cherry")
+      echo ${fruits[@]:1:2}
+    output: "banana cherry"
+    comment: "使用 ${array[@]:start:length} 切片"
+
+  - name: list_append
+    description: "数组添加元素"
+    code: |
+      fruits=("apple")
+      fruits+=("banana")
+      echo ${fruits[@]}
+    output: "apple banana"
+    comment: "使用 += 添加元素"
+
+  - name: list_comprehension
+    description: "列表推导式"
+    code: |
+      squares=()
+      for i in {0..4}; do
+          squares+=($((i * i)))
+      done
+      echo ${squares[@]}
+    output: "0 1 4 9 16"
+    comment: "使用 for 循环实现"
+
+  - name: dict
+    description: "关联数组创建和访问"
+    code: |
+      declare -A person
+      person=(["name"]="Alice" ["age"]=30)
+      echo ${person["name"]}
+    output: "Alice"
+    comment: "使用 declare -A 创建关联数组"
+
+  - name: dict_get
+    description: "关联数组安全访问"
+    code: |
+      declare -A person
+      person=(["name"]="Alice")
+      echo ${person["age"]:-0}
+    output: "0"
+    comment: ":- 提供默认值"
+
+  - name: dict_comprehension
+    description: "关联数组推导式"
+    code: |
+      declare -A squares
+      for i in {0..4}; do
+          squares[$i]=$((i * i))
+      done
+      for key in "${!squares[@]}"; do
+          echo "$key: ${squares[$key]}"
+      done
+    output: "0: 0\n1: 1\n2: 4\n3: 9\n4: 16"
+    comment: "使用 for 循环实现"
+
+  - name: set
+    description: "集合操作"
+    code: |
+      colors=("red" "blue" "red")
+      unique=($(printf "%s\n" "${colors[@]}" | sort -u))
+      echo ${#unique[@]}
+    output: "2"
+    comment: "使用 sort -u 去重"
+
+  - name: set_add
+    description: "集合添加元素"
+    code: |
+      colors=("red")
+      colors+=("blue")
+      echo ${colors[@]}
+    output: "red blue"
+    comment: "使用数组模拟集合"
+
+  - name: if_stmt
+    description: "条件语句"
+    code: |
+      x=10
+      if [ $x -gt 5 ]; then
+          echo "Big"
+      else
+          echo "Small"
+      fi
+    output: "Big"
+    comment: "使用 if/then/else/fi"
+
+  - name: if_elif_else
+    description: "多条件语句"
+    code: |
+      score=85
+      if [ $score -ge 90 ]; then
+          grade="A"
+      elif [ $score -ge 80 ]; then
+          grade="B"
+      else
+          grade="C"
+      fi
+      echo $grade
+    output: "B"
+    comment: "elif 表示 else if"
+
+  - name: ternary
+    description: "三元运算符"
+    code: |
+      age=20
+      [ $age -ge 18 ] && status="adult" || status="minor"
+      echo $status
+    output: "adult"
+    comment: "使用 && || 模拟"
+
+  - name: for_loop
+    description: "for 循环"
+    code: |
+      for i in {0..2}; do
+          echo $i
+      done
+    output: "0\n1\n2"
+    comment: "for...in 遍历范围"
+
+  - name: for_dict
+    description: "遍历关联数组"
+    code: |
+      declare -A person
+      person=(["name"]="Alice" ["age"]=30)
+      for key in "${!person[@]}"; do
+          echo "$key: ${person[$key]}"
+      done
+    output: "name: Alice\nage: 30"
+    comment: "!array 获取键"
+
+  - name: while_loop
+    description: "while 循环"
+    code: |
+      i=0
+      while [ $i -lt 3 ]; do
+          echo $i
+          ((i++))
+      done
+    output: "0\n1\n2"
+    comment: "while 循环条件控制"
+
+  - name: break_continue
+    description: "break 和 continue"
+    code: |
+      for i in {0..4}; do
+          if [ $i -eq 2 ]; then continue; fi
+          if [ $i -eq 4 ]; then break; fi
+          echo $i
+      done
+    output: "0\n1\n3"
+    comment: "continue 跳过，break 退出"
+
+  - name: function_def
+    description: "函数定义"
+    code: |
+      greet() {
+          echo "Hello, $1!"
+      }
+      greet "World"
+    output: "Hello, World!"
+    comment: "使用 function 关键字或直接定义"
+
+  - name: function_params
+    description: "函数默认参数"
+    code: |
+      greet() {
+          local name=$1
+          local greeting=${2:-"Hello"}
+          echo "$greeting, $name!"
+      }
+      greet "Alice"
+    output: "Hello, Alice!"
+    comment: "使用 ${2:-value} 提供默认值"
+
+  - name: function_args_kwargs
+    description: "可变参数"
+    code: |
+      func() {
+          for arg in "$@"; do
+              echo $arg
+          done
+      }
+      func 1 2 "Alice"
+    output: "1\n2\nAlice"
+    comment: "$@ 包含所有参数"
+
+  - name: lambda
+    description: "匿名函数"
+    code: |
+      square() { echo $(($1 * $1)); }
+      square 5
+    output: "25"
+    comment: "Bash 不支持真正的 lambda"
+
+  - name: class_def
+    description: "结构体模拟"
+    code: |
+      new_person() {
+          local name=$1
+          echo "Person: $name"
+      }
+      new_person "Alice"
+    output: "Person: Alice"
+    comment: "Bash 没有类，使用函数模拟"
+
+  - name: class_method
+    description: "函数和变量"
+    code: |
+      person_name="Alice"
+      person_greet() {
+          echo "Hello, $person_name!"
+      }
+      person_greet
+    output: "Hello, Alice!"
+    comment: "使用函数和全局变量"
+
+  - name: class_inheritance
+    description: "函数组合"
+    code: |
+      animal_speak() { echo ""; }
+      dog_speak() {
+          animal_speak
+          echo "Woof!"
+      }
+      dog_speak
+    output: "Woof!"
+    comment: "Bash 没有继承"
+
+  - name: class_property
+    description: "全局变量访问"
+    code: |
+      circle_radius=5
+      circle_get_radius() {
+          echo $circle_radius
+      }
+      circle_get_radius
+    output: "5"
+    comment: "通过函数访问变量"
+
+  - name: try_stmt
+    description: "错误码处理"
+    code: |
+      divisor=0
+      if [ $divisor -eq 0 ]; then
+          echo "Cannot divide by zero"
+      fi
+    output: "Cannot divide by zero"
+    comment: "使用条件判断"
+
+  - name: try_finally
+    description: "trap 清理"
+    code: |
+      cleanup() {
+          echo "Cleanup"
+      }
+      trap cleanup EXIT
+      if [ ! -f "test.txt" ]; then
+          echo "File not found"
+      fi
+    output: "File not found\nCleanup"
+    comment: "trap 捕获退出信号"
+
+  - name: raise_exception
+    description: "返回错误码"
+    code: |
+      validate_age() {
+          if [ $1 -lt 0 ]; then
+              echo "Invalid age" >&2
+              return 1
+          fi
+      }
+      validate_age -1
+    output: "Invalid age"
+    comment: "使用 return 返回错误码"
+
+  - name: import_stmt
+    description: "导入脚本"
+    code: |
+      source math.sh
+      sqrt_result=$(sqrt 16)
+      echo $sqrt_result
+    output: "4"
+    comment: "source 导入脚本"
+
+  - name: import_from
+    description: "导入特定函数"
+    code: |
+      source math.sh
+      sqrt 16
+    output: "4"
+    comment: "source 导入整个文件"
+
+  - name: import_as
+    description: "命令别名"
+    code: |
+      alias sqrtx="sqrt"
+      sqrtx 16
+    output: "4"
+    comment: "使用 alias 创建别名"

@@ -1,0 +1,353 @@
+items:
+  - name: str
+    description: "字符串定义"
+    code: |
+      $name = "World";
+      echo "Hello, $name!";
+    output: "Hello, World!"
+    comment: "双引号支持变量插值"
+
+  - name: int
+    description: "整数定义"
+    code: |
+      $age = 25;
+      echo $age;
+    output: "25"
+    comment: "整数类型自动推断"
+
+  - name: float
+    description: "浮点数定义"
+    code: |
+      $pi = 3.14159;
+      echo $pi;
+    output: "3.14159"
+    comment: "浮点数类型自动推断"
+
+  - name: bool
+    description: "布尔值定义"
+    code: |
+      $is_active = true;
+      $is_deleted = false;
+      var_dump($is_active);
+    output: "bool(true)"
+    comment: "布尔值使用 true/false"
+
+  - name: list
+    description: "数组创建和访问"
+    code: |
+      $fruits = ["apple", "banana", "cherry"];
+      echo $fruits[0];
+    output: "apple"
+    comment: "数组使用 0 开始的索引"
+
+  - name: list_slice
+    description: "数组切片"
+    code: |
+      $fruits = ["apple", "banana", "cherry"];
+      print_r(array_slice($fruits, 1, 2));
+    output: "Array ( [0] => banana [1] => cherry )"
+    comment: "使用 array_slice 切片"
+
+  - name: list_append
+    description: "数组添加元素"
+    code: |
+      $fruits = ["apple"];
+      $fruits[] = "banana";
+      print_r($fruits);
+    output: "Array ( [0] => apple [1] => banana )"
+    comment: "使用 [] 添加元素"
+
+  - name: list_comprehension
+    description: "数组映射"
+    code: |
+      $squares = array_map(function($x) { return $x * $x; }, range(0, 4));
+      print_r($squares);
+    output: "Array ( [0] => 0 [1] => 1 [2] => 4 [3] => 9 [4] => 16 )"
+    comment: "使用 array_map 实现"
+
+  - name: dict
+    description: "关联数组创建和访问"
+    code: |
+      $person = ["name" => "Alice", "age" => 30];
+      echo $person["name"];
+    output: "Alice"
+    comment: "关联数组使用键值对存储"
+
+  - name: dict_get
+    description: "关联数组安全访问"
+    code: |
+      $person = ["name" => "Alice"];
+      echo $person["age"] ?? 0;
+    output: "0"
+    comment: "?? 运算符提供默认值"
+
+  - name: dict_comprehension
+    description: "关联数组映射"
+    code: |
+      $squares = [];
+      foreach (range(0, 4) as $x) {
+          $squares[$x] = $x * $x;
+      }
+      print_r($squares);
+    output: "Array ( [0] => 0 [1] => 1 [2] => 4 [3] => 9 [4] => 16 )"
+    comment: "使用 foreach 循环实现"
+
+  - name: set
+    description: "集合操作"
+    code: |
+      $colors = ["red", "blue", "red"];
+      echo count(array_unique($colors));
+    output: "2"
+    comment: "使用 array_unique 去重"
+
+  - name: set_add
+    description: "集合添加元素"
+    code: |
+      $colors = ["red"];
+      $colors[] = "blue";
+      print_r(array_unique($colors));
+    output: "Array ( [0] => red [1] => blue )"
+    comment: "添加后去重"
+
+  - name: if_stmt
+    description: "条件语句"
+    code: |
+      $x = 10;
+      if ($x > 5) {
+          echo "Big";
+      } else {
+          echo "Small";
+      }
+    output: "Big"
+    comment: "使用大括号表示代码块"
+
+  - name: if_elif_else
+    description: "多条件语句"
+    code: |
+      $score = 85;
+      if ($score >= 90) {
+          $grade = "A";
+      } elseif ($score >= 80) {
+          $grade = "B";
+      } else {
+          $grade = "C";
+      }
+      echo $grade;
+    output: "B"
+    comment: "elseif 表示 else if"
+
+  - name: ternary
+    description: "三元运算符"
+    code: |
+      $age = 20;
+      $status = $age >= 18 ? "adult" : "minor";
+      echo $status;
+    output: "adult"
+    comment: "使用 ? : 语法"
+
+  - name: for_loop
+    description: "for 循环"
+    code: |
+      for ($i = 0; $i < 3; $i++) {
+          echo $i;
+      }
+    output: "012"
+    comment: "for 循环三个部分"
+
+  - name: for_dict
+    description: "遍历关联数组"
+    code: |
+      $person = ["name" => "Alice", "age" => 30];
+      foreach ($person as $key => $value) {
+          echo "$key: $value\n";
+      }
+    output: "name: Alice\nage: 30"
+    comment: "foreach 遍历键值对"
+
+  - name: while_loop
+    description: "while 循环"
+    code: |
+      $i = 0;
+      while ($i < 3) {
+          echo $i;
+          $i++;
+      }
+    output: "012"
+    comment: "while 循环条件控制"
+
+  - name: break_continue
+    description: "break 和 continue"
+    code: |
+      for ($i = 0; $i < 5; $i++) {
+          if ($i == 2) continue;
+          if ($i == 4) break;
+          echo $i;
+      }
+    output: "013"
+    comment: "continue 跳过，break 退出"
+
+  - name: function_def
+    description: "函数定义"
+    code: |
+      function greet($name) {
+          return "Hello, $name!";
+      }
+      echo greet("World");
+    output: "Hello, World!"
+    comment: "使用 function 关键字"
+
+  - name: function_params
+    description: "函数默认参数"
+    code: |
+      function greet($name, $greeting = "Hello") {
+          return "$greeting, $name!";
+      }
+      echo greet("Alice");
+    output: "Hello, Alice!"
+    comment: "参数可以设置默认值"
+
+  - name: function_args_kwargs
+    description: "可变参数"
+    code: |
+      function func(...$args) {
+          print_r($args);
+      }
+      func(1, 2, "Alice");
+    output: "Array ( [0] => 1 [1] => 2 [2] => Alice )"
+    comment: "... 表示可变参数"
+
+  - name: lambda
+    description: "匿名函数"
+    code: |
+      $square = function($x) { return $x * $x; };
+      echo $square(5);
+    output: "25"
+    comment: "使用 function 创建"
+
+  - name: class_def
+    description: "类定义"
+    code: |
+      class Person {
+          public $name;
+          public function __construct($name) {
+              $this->name = $name;
+          }
+      }
+      $p = new Person("Alice");
+      echo $p->name;
+    output: "Alice"
+    comment: "使用 class 关键字"
+
+  - name: class_method
+    description: "实例方法"
+    code: |
+      class Person {
+          public $name;
+          public function __construct($name) {
+              $this->name = $name;
+          }
+          public function greet() {
+              return "Hello, {$this->name}!";
+          }
+      }
+      $p = new Person("Alice");
+      echo $p->greet();
+    output: "Hello, Alice!"
+    comment: "$this 表示实例本身"
+
+  - name: class_inheritance
+    description: "类继承"
+    code: |
+      class Animal {
+          public function speak() {}
+      }
+      class Dog extends Animal {
+          public function speak() {
+              return "Woof!";
+          }
+      }
+      $d = new Dog();
+      echo $d->speak();
+    output: "Woof!"
+    comment: "extends 表示继承"
+
+  - name: class_property
+    description: "属性访问器"
+    code: |
+      class Circle {
+          private $_radius;
+          public function __construct($radius) {
+              $this->_radius = $radius;
+          }
+          public function getRadius() {
+              return $this->_radius;
+          }
+      }
+      $c = new Circle(5);
+      echo $c->getRadius();
+    output: "5"
+    comment: "使用 getter 方法"
+
+  - name: try_stmt
+    description: "异常处理"
+    code: |
+      try {
+          $result = 10 / 0;
+      } catch (DivisionByZeroError $e) {
+          echo "Cannot divide by zero";
+      }
+    output: "Cannot divide by zero"
+    comment: "catch 捕获特定异常"
+
+  - name: try_finally
+    description: "finally 块"
+    code: |
+      try {
+          $file = fopen("test.txt", "r");
+      } catch (Exception $e) {
+          echo "File not found";
+      } finally {
+          echo "Cleanup";
+      }
+    output: "File not found\nCleanup"
+    comment: "finally 无论是否异常都执行"
+
+  - name: raise_exception
+    description: "抛出异常"
+    code: |
+      function validate_age($age) {
+          if ($age < 0) {
+              throw new Exception("Invalid age");
+          }
+      }
+      try {
+          validate_age(-1);
+      } catch (Exception $e) {
+          echo $e->getMessage();
+      }
+    output: "Invalid age"
+    comment: "throw 抛出异常"
+
+  - name: import_stmt
+    description: "包含文件"
+    code: |
+      require 'math.php';
+      echo sqrt(16);
+    output: "4"
+    comment: "require 导入文件"
+
+  - name: import_from
+    description: "从文件导入"
+    code: |
+      require 'math.php';
+      echo sqrt(16);
+    output: "4"
+    comment: "require 导入整个文件"
+
+  - name: import_as
+    description: "命名空间别名"
+    code: |
+      use Math as M;
+      echo M\sqrt(16);
+    output: "4"
+    comment: "use 创建别名"

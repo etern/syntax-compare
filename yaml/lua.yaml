@@ -1,0 +1,373 @@
+items:
+  - name: str
+    description: "字符串定义"
+    code: |
+      name = "World"
+      print(string.format("Hello, %s!", name))
+    output: "Hello, World!"
+    comment: "字符串使用单引号或双引号"
+
+  - name: int
+    description: "整数定义"
+    code: |
+      age = 25
+      print(age)
+    output: "25"
+    comment: "整数类型自动推断"
+
+  - name: float
+    description: "浮点数定义"
+    code: |
+      pi = 3.14159
+      print(pi)
+    output: "3.14159"
+    comment: "浮点数类型自动推断"
+
+  - name: bool
+    description: "布尔值定义"
+    code: |
+      is_active = true
+      is_deleted = false
+      print(is_active)
+    output: "true"
+    comment: "布尔值使用 true/false"
+
+  - name: list
+    description: "数组创建和访问"
+    code: |
+      fruits = {"apple", "banana", "cherry"}
+      print(fruits[1])
+    output: "apple"
+    comment: "数组使用 1 开始的索引"
+
+  - name: list_slice
+    description: "数组切片"
+    code: |
+      fruits = {"apple", "banana", "cherry"}
+      for i = 1, 2 do
+          print(fruits[i])
+      end
+    output: "apple\nbanana"
+    comment: "使用 for 循环实现切片"
+
+  - name: list_append
+    description: "数组添加元素"
+    code: |
+      fruits = {"apple"}
+      table.insert(fruits, "banana")
+      for i, v in ipairs(fruits) do
+          print(v)
+      end
+    output: "apple\nbanana"
+    comment: "table.insert 在末尾添加元素"
+
+  - name: list_comprehension
+    description: "列表推导式"
+    code: |
+      squares = {}
+      for x = 0, 4 do
+          table.insert(squares, x * x)
+      end
+      for i, v in ipairs(squares) do
+          print(v)
+      end
+    output: "0\n1\n4\n9\n16"
+    comment: "使用 for 循环实现"
+
+  - name: dict
+    description: "表创建和访问"
+    code: |
+      person = {name = "Alice", age = 30}
+      print(person.name)
+    output: "Alice"
+    comment: "表使用键值对存储"
+
+  - name: dict_get
+    description: "表安全访问"
+    code: |
+      person = {name = "Alice"}
+      print(person.age or 0)
+    output: "0"
+    comment: "使用 or 提供默认值"
+
+  - name: dict_comprehension
+    description: "字典推导式"
+    code: |
+      squares = {}
+      for x = 0, 4 do
+          squares[x] = x * x
+      end
+      for k, v in pairs(squares) do
+          print(k, v)
+      end
+    output: "0	0\n1	1\n2	4\n3	9\n4	16"
+    comment: "使用 for 循环实现"
+
+  - name: set
+    description: "集合操作"
+    code: |
+      colors = {red = true, blue = true}
+      local count = 0
+      for _ in pairs(colors) do count = count + 1 end
+      print(count)
+    output: "2"
+    comment: "用表和布尔值模拟集合"
+
+  - name: set_add
+    description: "集合添加元素"
+    code: |
+      colors = {red = true}
+      colors.blue = true
+      for k in pairs(colors) do
+          print(k)
+      end
+    output: "red\nblue"
+    comment: "直接赋值添加元素"
+
+  - name: if_stmt
+    description: "条件语句"
+    code: |
+      x = 10
+      if x > 5 then
+          print("Big")
+      else
+          print("Small")
+      end
+    output: "Big"
+    comment: "使用 then/end 表示代码块"
+
+  - name: if_elif_else
+    description: "多条件语句"
+    code: |
+      score = 85
+      if score >= 90 then
+          grade = "A"
+      elseif score >= 80 then
+          grade = "B"
+      else
+          grade = "C"
+      end
+      print(grade)
+    output: "B"
+    comment: "elseif 表示 else if"
+
+  - name: ternary
+    description: "三元运算符"
+    code: |
+      age = 20
+      status = age >= 18 and "adult" or "minor"
+      print(status)
+    output: "adult"
+    comment: "使用 and/or 模拟"
+
+  - name: for_loop
+    description: "for 循环"
+    code: |
+      for i = 0, 2 do
+          print(i)
+      end
+    output: "0\n1\n2"
+    comment: "for 循环范围 [start, end]"
+
+  - name: for_dict
+    description: "遍历表"
+    code: |
+      person = {name = "Alice", age = 30}
+      for key, value in pairs(person) do
+          print(key, value)
+      end
+    output: "name	Alice\nage	30"
+    comment: "pairs() 返回键值对"
+
+  - name: while_loop
+    description: "while 循环"
+    code: |
+      i = 0
+      while i < 3 do
+          print(i)
+          i = i + 1
+      end
+    output: "0\n1\n2"
+    comment: "while 循环条件控制"
+
+  - name: break_continue
+    description: "break 和 continue"
+    code: |
+      for i = 0, 4 do
+          if i == 2 then goto continue end
+          if i == 4 then break end
+          print(i)
+          ::continue::
+      end
+    output: "0\n1\n3"
+    comment: "break 退出，用 goto 模拟 continue"
+
+  - name: function_def
+    description: "函数定义"
+    code: |
+      function greet(name)
+          return string.format("Hello, %s!", name)
+      end
+      print(greet("World"))
+    output: "Hello, World!"
+    comment: "使用 function 关键字定义"
+
+  - name: function_params
+    description: "函数默认参数"
+    code: |
+      function greet(name, greeting)
+          greeting = greeting or "Hello"
+          return string.format("%s, %s!", greeting, name)
+      end
+      print(greet("Alice"))
+    output: "Hello, Alice!"
+    comment: "使用 or 提供默认值"
+
+  - name: function_args_kwargs
+    description: "可变参数"
+    code: |
+      function func(...)
+          local args = {...}
+          for i, v in ipairs(args) do
+              print(i, v)
+          end
+      end
+      func(1, 2, "Alice")
+    output: "1	1\n2	2\n3	Alice"
+    comment: "... 表示可变参数"
+
+  - name: lambda
+    description: "匿名函数"
+    code: |
+      square = function(x) return x * x end
+      print(square(5))
+    output: "25"
+    comment: "使用 function 表达式"
+
+  - name: class_def
+    description: "类定义"
+    code: |
+      Person = {}
+      function Person.new(name)
+          local self = {name = name}
+          setmetatable(self, Person)
+          return self
+      end
+      p = Person.new("Alice")
+      print(p.name)
+    output: "Alice"
+    comment: "用表和元表模拟类"
+
+  - name: class_method
+    description: "类方法"
+    code: |
+      Person = {}
+      function Person.new(name)
+          local self = {name = name}
+          setmetatable(self, Person)
+          return self
+      end
+      function Person:greet()
+          return string.format("Hello, %s!", self.name)
+      end
+      p = Person.new("Alice")
+      print(p:greet())
+    output: "Hello, Alice!"
+    comment: "使用 : 语法调用方法"
+
+  - name: class_inheritance
+    description: "类继承"
+    code: |
+      Animal = {}
+      function Animal:speak() end
+      Dog = {}
+      setmetatable(Dog, {__index = Animal})
+      function Dog:speak()
+          return "Woof!"
+      end
+      d = Dog
+      print(d:speak())
+    output: "Woof!"
+    comment: "使用元表实现继承"
+
+  - name: class_property
+    description: "属性访问"
+    code: |
+      Circle = {}
+      function Circle.new(radius)
+          local self = {_radius = radius}
+          setmetatable(self, Circle)
+          return self
+      end
+      Circle.__index = Circle
+      function Circle:radius()
+          return self._radius
+      end
+      c = Circle.new(5)
+      print(c:radius())
+    output: "5"
+    comment: "通过方法访问属性"
+
+  - name: try_stmt
+    description: "异常处理"
+    code: |
+      status, result = pcall(function()
+          return 10 / 0
+      end)
+      if not status then
+          print("Error: " .. result)
+      end
+    output: "Error: attempt to divide by zero"
+    comment: "pcall 捕获错误"
+
+  - name: try_finally
+    description: "finally 块"
+    code: |
+      status, result = pcall(function()
+          file = io.open("test.txt", "r")
+          if not file then error("File not found") end
+      end)
+      if not status then
+          print(result)
+      end
+      print("Cleanup")
+    output: "File not found\nCleanup"
+    comment: "手动执行清理"
+
+  - name: raise_exception
+    description: "抛出异常"
+    code: |
+      function validate_age(age)
+          if age < 0 then error("Invalid age") end
+      end
+      status, err = pcall(validate_age, -1)
+      if not status then
+          print(err)
+      end
+    output: "Invalid age"
+    comment: "error 抛出异常"
+
+  - name: import_stmt
+    description: "导入模块"
+    code: |
+      math = require("math")
+      print(math.sqrt(16))
+    output: "4.0"
+    comment: "require 导入模块"
+
+  - name: import_from
+    description: "从模块导入"
+    code: |
+      local math = require("math")
+      local sqrt = math.sqrt
+      print(sqrt(16))
+    output: "4.0"
+    comment: "手动导入特定函数"
+
+  - name: import_as
+    description: "导入别名"
+    code: |
+      local m = require("math")
+      print(m.sqrt(16))
+    output: "4.0"
+    comment: "使用局部变量创建别名"

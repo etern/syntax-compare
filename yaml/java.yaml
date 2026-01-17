@@ -1,0 +1,402 @@
+items:
+  - name: str
+    description: "字符串定义"
+    code: |
+      String name = "World";
+      System.out.println("Hello, " + name + "!");
+    output: "Hello, World!"
+    comment: "使用 String 类表示字符串"
+
+  - name: int
+    description: "整数定义"
+    code: |
+      int age = 25;
+      System.out.println(age);
+    output: "25"
+    comment: "使用 int 类型定义整数"
+
+  - name: float
+    description: "浮点数定义"
+    code: |
+      double pi = 3.14159;
+      System.out.println(pi);
+    output: "3.14159"
+    comment: "使用 double 类型定义浮点数"
+
+  - name: bool
+    description: "布尔值定义"
+    code: |
+      boolean is_active = true;
+      boolean is_deleted = false;
+      System.out.println(is_active);
+    output: "true"
+    comment: "使用 boolean 类型"
+
+  - name: list
+    description: "数组创建和访问"
+    code: |
+      String[] fruits = {"apple", "banana", "cherry"};
+      System.out.println(fruits[0]);
+    output: "apple"
+    comment: "数组使用 0 开始的索引"
+
+  - name: list_slice
+    description: "数组切片"
+    code: |
+      String[] fruits = {"apple", "banana", "cherry"};
+      for (int i = 1; i <= 2; i++) {
+          System.out.println(fruits[i]);
+      }
+    output: "banana\ncherry"
+    comment: "使用 for 循环实现"
+
+  - name: list_append
+    description: "列表添加元素"
+    code: |
+      import java.util.ArrayList;
+      ArrayList<String> fruits = new ArrayList<>();
+      fruits.add("apple");
+      fruits.add("banana");
+      System.out.println(fruits);
+    output: "[apple, banana]"
+    comment: "使用 ArrayList 动态数组"
+
+  - name: list_comprehension
+    description: "列表推导式"
+    code: |
+      import java.util.ArrayList;
+      import java.util.stream.Collectors;
+      import java.util.stream.IntStream;
+      ArrayList<Integer> squares = (ArrayList<Integer>) IntStream.range(0, 5)
+          .map(x -> x * x)
+          .boxed()
+          .collect(Collectors.toList());
+      System.out.println(squares);
+    output: "[0, 1, 4, 9, 16]"
+    comment: "使用 Stream API 实现"
+
+  - name: dict
+    description: "Map 创建和访问"
+    code: |
+      import java.util.HashMap;
+      HashMap<String, Object> person = new HashMap<>();
+      person.put("name", "Alice");
+      person.put("age", 30);
+      System.out.println(person.get("name"));
+    output: "Alice"
+    comment: "使用 HashMap"
+
+  - name: dict_get
+    description: "Map 安全访问"
+    code: |
+      import java.util.HashMap;
+      HashMap<String, Object> person = new HashMap<>();
+      person.put("name", "Alice");
+      System.out.println(person.getOrDefault("age", 0));
+    output: "0"
+    comment: "getOrDefault 提供默认值"
+
+  - name: dict_comprehension
+    description: "Map 推导式"
+    code: |
+      import java.util.HashMap;
+      HashMap<Integer, Integer> squares = new HashMap<>();
+      for (int i = 0; i < 5; i++) {
+          squares.put(i, i * i);
+      }
+      System.out.println(squares);
+    output: "{0=0, 1=1, 2=4, 3=9, 4=16}"
+    comment: "使用 for 循环实现"
+
+  - name: set
+    description: "集合操作"
+    code: |
+      import java.util.HashSet;
+      HashSet<String> colors = new HashSet<>();
+      colors.add("red");
+      colors.add("blue");
+      colors.add("red");
+      System.out.println(colors.size());
+    output: "2"
+    comment: "Set 自动去重"
+
+  - name: set_add
+    description: "集合添加元素"
+    code: |
+      import java.util.HashSet;
+      HashSet<String> colors = new HashSet<>();
+      colors.add("red");
+      colors.add("blue");
+      System.out.println(colors);
+    output: "[red, blue]"
+    comment: "add 方法添加元素"
+
+  - name: if_stmt
+    description: "条件语句"
+    code: |
+      int x = 10;
+      if (x > 5) {
+          System.out.println("Big");
+      } else {
+          System.out.println("Small");
+      }
+    output: "Big"
+    comment: "使用大括号表示代码块"
+
+  - name: if_elif_else
+    description: "多条件语句"
+    code: |
+      int score = 85;
+      String grade;
+      if (score >= 90) {
+          grade = "A";
+      } else if (score >= 80) {
+          grade = "B";
+      } else {
+          grade = "C";
+      }
+      System.out.println(grade);
+    output: "B"
+    comment: "else if 表示 else if"
+
+  - name: ternary
+    description: "三元运算符"
+    code: |
+      int age = 20;
+      String status = age >= 18 ? "adult" : "minor";
+      System.out.println(status);
+    output: "adult"
+    comment: "使用 ? : 语法"
+
+  - name: for_loop
+    description: "for 循环"
+    code: |
+      for (int i = 0; i < 3; i++) {
+          System.out.println(i);
+      }
+    output: "0\n1\n2"
+    comment: "for 循环三个部分"
+
+  - name: for_dict
+    description: "遍历 Map"
+    code: |
+      import java.util.HashMap;
+      HashMap<String, Object> person = new HashMap<>();
+      person.put("name", "Alice");
+      person.put("age", 30);
+      for (String key : person.keySet()) {
+          System.out.println(key + ": " + person.get(key));
+      }
+    output: "name: Alice\nage: 30"
+    comment: "使用 for-each 遍历"
+
+  - name: while_loop
+    description: "while 循环"
+    code: |
+      int i = 0;
+      while (i < 3) {
+          System.out.println(i);
+          i++;
+      }
+    output: "0\n1\n2"
+    comment: "while 循环条件控制"
+
+  - name: break_continue
+    description: "break 和 continue"
+    code: |
+      for (int i = 0; i < 5; i++) {
+          if (i == 2) continue;
+          if (i == 4) break;
+          System.out.println(i);
+      }
+    output: "0\n1\n3"
+    comment: "continue 跳过，break 退出"
+
+  - name: function_def
+    description: "方法定义"
+    code: |
+      static String greet(String name) {
+          return "Hello, " + name + "!";
+      }
+      public static void main(String[] args) {
+          System.out.println(greet("World"));
+      }
+    output: "Hello, World!"
+    comment: "需要指定返回类型和参数类型"
+
+  - name: function_params
+    description: "方法重载"
+    code: |
+      static String greet(String name) {
+          return greet(name, "Hello");
+      }
+      static String greet(String name, String greeting) {
+          return greeting + ", " + name + "!";
+      }
+      public static void main(String[] args) {
+          System.out.println(greet("Alice"));
+      }
+    output: "Hello, Alice!"
+    comment: "使用方法重载实现默认值"
+
+  - name: function_args_kwargs
+    description: "可变参数"
+    code: |
+      static void func(Object... args) {
+          for (Object arg : args) {
+              System.out.println(arg);
+          }
+      }
+      public static void main(String[] args) {
+          func(1, 2, "Alice");
+      }
+    output: "1\n2\nAlice"
+    comment: "... 表示可变参数"
+
+  - name: lambda
+    description: "Lambda 表达式"
+    code: |
+      import java.util.function.Function;
+      Function<Integer, Integer> square = x -> x * x;
+      System.out.println(square.apply(5));
+    output: "25"
+    comment: "使用 lambda 语法"
+
+  - name: class_def
+    description: "类定义"
+    code: |
+      class Person {
+          String name;
+          Person(String name) {
+              this.name = name;
+          }
+      }
+      public static void main(String[] args) {
+          Person p = new Person("Alice");
+          System.out.println(p.name);
+      }
+    output: "Alice"
+    comment: "使用 class 关键字"
+
+  - name: class_method
+    description: "实例方法"
+    code: |
+      class Person {
+          String name;
+          Person(String name) {
+              this.name = name;
+          }
+          String greet() {
+              return "Hello, " + this.name + "!";
+          }
+      }
+      public static void main(String[] args) {
+          Person p = new Person("Alice");
+          System.out.println(p.greet());
+      }
+    output: "Hello, Alice!"
+    comment: "this 表示实例本身"
+
+  - name: class_inheritance
+    description: "类继承"
+    code: |
+      class Animal {
+          String speak() { return ""; }
+      }
+      class Dog extends Animal {
+          String speak() {
+              return "Woof!";
+          }
+      }
+      public static void main(String[] args) {
+          Dog d = new Dog();
+          System.out.println(d.speak());
+      }
+    output: "Woof!"
+    comment: "extends 表示继承"
+
+  - name: class_property
+    description: "getter 方法"
+    code: |
+      class Circle {
+          private int _radius;
+          Circle(int radius) {
+              this._radius = radius;
+          }
+          int getRadius() {
+              return this._radius;
+          }
+      }
+      public static void main(String[] args) {
+          Circle c = new Circle(5);
+          System.out.println(c.getRadius());
+      }
+    output: "5"
+    comment: "使用 getter 方法"
+
+  - name: try_stmt
+    description: "异常处理"
+    code: |
+      try {
+          int result = 10 / 0;
+      } catch (ArithmeticException e) {
+          System.out.println("Cannot divide by zero");
+      }
+    output: "Cannot divide by zero"
+    comment: "catch 捕获异常"
+
+  - name: try_finally
+    description: "finally 块"
+    code: |
+      try {
+          java.io.File file = new java.io.File("test.txt");
+          java.io.FileReader fr = new java.io.FileReader(file);
+      } catch (java.io.FileNotFoundException e) {
+          System.out.println("File not found");
+      } finally {
+          System.out.println("Cleanup");
+      }
+    output: "File not found\nCleanup"
+    comment: "finally 无论是否异常都执行"
+
+  - name: raise_exception
+    description: "抛出异常"
+    code: |
+      static void validateAge(int age) {
+          if (age < 0) {
+              throw new IllegalArgumentException("Invalid age");
+          }
+      }
+      public static void main(String[] args) {
+          try {
+              validateAge(-1);
+          } catch (IllegalArgumentException e) {
+              System.out.println(e.getMessage());
+          }
+      }
+    output: "Invalid age"
+    comment: "throw 抛出异常"
+
+  - name: import_stmt
+    description: "导入类"
+    code: |
+      import java.lang.Math;
+      System.out.println(Math.sqrt(16));
+    output: "4.0"
+    comment: "import 导入类"
+
+  - name: import_from
+    description: "导入特定方法"
+    code: |
+      import static java.lang.Math.sqrt;
+      System.out.println(sqrt(16));
+    output: "4.0"
+    comment: "import static 导入静态方法"
+
+  - name: import_as
+    description: "导入别名"
+    code: |
+      import java.lang.Math as M;
+      System.out.println(M.sqrt(16));
+    output: "4.0"
+    comment: "Java 不支持导入别名"

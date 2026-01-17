@@ -31,3 +31,6 @@ env/
 *.swp
 *.swo
 *~
+
+# Generated files
+docs/index.html

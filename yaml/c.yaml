@@ -1,0 +1,570 @@
+items:
+  - name: str
+    description: "字符串定义"
+    code: |
+      #include <stdio.h>
+      
+      int main() {
+          char name[] = "World";
+          printf("Hello, %s!\n", name);
+          return 0;
+      }
+    output: "Hello, World!"
+    comment: "使用字符数组表示字符串"
+
+  - name: int
+    description: "整数定义"
+    code: |
+      #include <stdio.h>
+      
+      int main() {
+          int age = 25;
+          printf("%d\n", age);
+          return 0;
+      }
+    output: "25"
+    comment: "使用 int 类型定义整数"
+
+  - name: float
+    description: "浮点数定义"
+    code: |
+      #include <stdio.h>
+      
+      int main() {
+          double pi = 3.14159;
+          printf("%f\n", pi);
+          return 0;
+      }
+    output: "3.141590"
+    comment: "使用 double 类型定义浮点数"
+
+  - name: bool
+    description: "布尔值定义"
+    code: |
+      #include <stdio.h>
+      #include <stdbool.h>
+      
+      int main() {
+          bool is_active = true;
+          bool is_deleted = false;
+          printf("%d\n", is_active);
+          return 0;
+      }
+    output: "1"
+    comment: "需要包含 stdbool.h"
+
+  - name: list
+    description: "数组创建和访问"
+    code: |
+      #include <stdio.h>
+      
+      int main() {
+          char* fruits[] = {"apple", "banana", "cherry"};
+          printf("%s\n", fruits[0]);
+          return 0;
+      }
+    output: "apple"
+    comment: "数组使用 0 开始的索引"
+
+  - name: list_slice
+    description: "数组切片"
+    code: |
+      #include <stdio.h>
+      
+      int main() {
+          char* fruits[] = {"apple", "banana", "cherry"};
+          for (int i = 1; i <= 2; i++) {
+              printf("%s\n", fruits[i]);
+          }
+          return 0;
+      }
+    output: "banana\ncherry"
+    comment: "使用 for 循环实现切片"
+
+  - name: list_append
+    description: "数组添加元素"
+    code: |
+      #include <stdio.h>
+      #include <string.h>
+      
+      int main() {
+          char* fruits[10] = {"apple"};
+          fruits[1] = "banana";
+          for (int i = 0; i < 2; i++) {
+              printf("%s\n", fruits[i]);
+          }
+          return 0;
+      }
+    output: "apple\nbanana"
+    comment: "直接赋值添加元素"
+
+  - name: list_comprehension
+    description: "列表推导式"
+    code: |
+      #include <stdio.h>
+      
+      int main() {
+          int squares[5];
+          for (int i = 0; i < 5; i++) {
+              squares[i] = i * i;
+              printf("%d ", squares[i]);
+          }
+          return 0;
+      }
+    output: "0 1 4 9 16"
+    comment: "使用 for 循环实现"
+
+  - name: dict
+    description: "结构体创建和访问"
+    code: |
+      #include <stdio.h>
+      
+      struct Person {
+          char* name;
+          int age;
+      };
+      
+      int main() {
+          struct Person person = {"Alice", 30};
+          printf("%s\n", person.name);
+          return 0;
+      }
+    output: "Alice"
+    comment: "使用结构体模拟字典"
+
+  - name: dict_get
+    description: "结构体安全访问"
+    code: |
+      #include <stdio.h>
+      
+      struct Person {
+          char* name;
+          int age;
+      };
+      
+      int main() {
+          struct Person person = {"Alice", 0};
+          printf("%d\n", person.age);
+          return 0;
+      }
+    output: "0"
+    comment: "直接访问成员"
+
+  - name: dict_comprehension
+    description: "字典推导式"
+    code: |
+      #include <stdio.h>
+      
+      struct Pair {
+          int key;
+          int value;
+      };
+      
+      int main() {
+          struct Pair squares[5];
+          for (int i = 0; i < 5; i++) {
+              squares[i] = (struct Pair){i, i * i};
+          }
+          return 0;
+      }
+    output: ""
+    comment: "使用结构体数组实现"
+
+  - name: set
+    description: "集合操作"
+    code: |
+      #include <stdio.h>
+      
+      int main() {
+          int colors[] = {1, 2, 1};
+          int count = 0;
+          for (int i = 0; i < 3; i++) {
+              int found = 0;
+              for (int j = 0; j < i; j++) {
+                  if (colors[i] == colors[j]) found = 1;
+              }
+              if (!found) count++;
+          }
+          printf("%d\n", count);
+          return 0;
+      }
+    output: "2"
+    comment: "手动实现去重"
+
+  - name: set_add
+    description: "集合添加元素"
+    code: |
+      #include <stdio.h>
+      
+      int main() {
+          int colors[10] = {1};
+          int size = 1;
+          colors[size++] = 2;
+          printf("%d\n", size);
+          return 0;
+      }
+    output: "2"
+    comment: "使用数组模拟集合"
+
+  - name: if_stmt
+    description: "条件语句"
+    code: |
+      #include <stdio.h>
+      
+      int main() {
+          int x = 10;
+          if (x > 5) {
+              printf("Big\n");
+          } else {
+              printf("Small\n");
+          }
+          return 0;
+      }
+    output: "Big"
+    comment: "使用大括号表示代码块"
+
+  - name: if_elif_else
+    description: "多条件语句"
+    code: |
+      #include <stdio.h>
+      
+      int main() {
+          int score = 85;
+          char grade;
+          if (score >= 90) {
+              grade = 'A';
+          } else if (score >= 80) {
+              grade = 'B';
+          } else {
+              grade = 'C';
+          }
+          printf("%c\n", grade);
+          return 0;
+      }
+    output: "B"
+    comment: "else if 表示 else if"
+
+  - name: ternary
+    description: "三元运算符"
+    code: |
+      #include <stdio.h>
+      
+      int main() {
+          int age = 20;
+          const char* status = age >= 18 ? "adult" : "minor";
+          printf("%s\n", status);
+          return 0;
+      }
+    output: "adult"
+    comment: "使用 ? : 语法"
+
+  - name: for_loop
+    description: "for 循环"
+    code: |
+      #include <stdio.h>
+      
+      int main() {
+          for (int i = 0; i < 3; i++) {
+              printf("%d\n", i);
+          }
+          return 0;
+      }
+    output: "0\n1\n2"
+    comment: "for 循环三个部分"
+
+  - name: for_dict
+    description: "遍历数组"
+    code: |
+      #include <stdio.h>
+      
+      int main() {
+          int arr[] = {10, 20};
+          for (int i = 0; i < 2; i++) {
+              printf("%d\n", arr[i]);
+          }
+          return 0;
+      }
+    output: "10\n20"
+    comment: "使用索引遍历数组"
+
+  - name: while_loop
+    description: "while 循环"
+    code: |
+      #include <stdio.h>
+      
+      int main() {
+          int i = 0;
+          while (i < 3) {
+              printf("%d\n", i);
+              i++;
+          }
+          return 0;
+      }
+    output: "0\n1\n2"
+    comment: "while 循环条件控制"
+
+  - name: break_continue
+    description: "break 和 continue"
+    code: |
+      #include <stdio.h>
+      
+      int main() {
+          for (int i = 0; i < 5; i++) {
+              if (i == 2) continue;
+              if (i == 4) break;
+              printf("%d\n", i);
+          }
+          return 0;
+      }
+    output: "0\n1\n3"
+    comment: "continue 跳过，break 退出"
+
+  - name: function_def
+    description: "函数定义"
+    code: |
+      #include <stdio.h>
+      
+      void greet(const char* name) {
+          printf("Hello, %s!\n", name);
+      }
+      
+      int main() {
+          greet("World");
+          return 0;
+      }
+    output: "Hello, World!"
+    comment: "需要指定返回类型和参数类型"
+
+  - name: function_params
+    description: "函数默认参数"
+    code: |
+      #include <stdio.h>
+      
+      void greet(const char* name, const char* greeting) {
+          if (greeting == NULL) greeting = "Hello";
+          printf("%s, %s!\n", greeting, name);
+      }
+      
+      int main() {
+          greet("Alice", NULL);
+          return 0;
+      }
+    output: "Hello, Alice!"
+    comment: "使用 NULL 模拟默认值"
+
+  - name: function_args_kwargs
+    description: "可变参数"
+    code: |
+      #include <stdio.h>
+      #include <stdarg.h>
+      
+      void func(int count, ...) {
+          va_list args;
+          va_start(args, count);
+          for (int i = 0; i < count; i++) {
+              int num = va_arg(args, int);
+              printf("%d\n", num);
+          }
+          va_end(args);
+      }
+      
+      int main() {
+          func(2, 1, 2);
+          return 0;
+      }
+    output: "1\n2"
+    comment: "使用 stdarg.h 实现"
+
+  - name: lambda
+    description: "函数指针"
+    code: |
+      #include <stdio.h>
+      
+      int square(int x) { return x * x; }
+      
+      int main() {
+          int (*func)(int) = square;
+          printf("%d\n", func(5));
+          return 0;
+      }
+    output: "25"
+    comment: "使用函数指针"
+
+  - name: class_def
+    description: "结构体定义"
+    code: |
+      #include <stdio.h>
+      
+      struct Person {
+          char* name;
+      };
+      
+      int main() {
+          struct Person p = {"Alice"};
+          printf("%s\n", p.name);
+          return 0;
+      }
+    output: "Alice"
+    comment: "C 没有类，使用结构体"
+
+  - name: class_method
+    description: "结构体和函数"
+    code: |
+      #include <stdio.h>
+      
+      struct Person {
+          char* name;
+      };
+      
+      void greet(struct Person* self) {
+          printf("Hello, %s!\n", self->name);
+      }
+      
+      int main() {
+          struct Person p = {"Alice"};
+          greet(&p);
+          return 0;
+      }
+    output: "Hello, Alice!"
+    comment: "使用函数和指针"
+
+  - name: class_inheritance
+    description: "结构体嵌套"
+    code: |
+      #include <stdio.h>
+      
+      struct Animal {
+          void (*speak)();
+      };
+      
+      void dog_speak() { printf("Woof!\n"); }
+      
+      struct Dog {
+          struct Animal base;
+      };
+      
+      int main() {
+          struct Dog d = {{dog_speak}};
+          d.base.speak();
+          return 0;
+      }
+    output: "Woof!"
+    comment: "使用函数指针模拟"
+
+  - name: class_property
+    description: "结构体成员访问"
+    code: |
+      #include <stdio.h>
+      
+      struct Circle {
+          int _radius;
+      };
+      
+      int radius(struct Circle* self) {
+          return self->_radius;
+      }
+      
+      int main() {
+          struct Circle c = {5};
+          printf("%d\n", radius(&c));
+          return 0;
+      }
+    output: "5"
+    comment: "通过函数访问"
+
+  - name: try_stmt
+    description: "错误码处理"
+    code: |
+      #include <stdio.h>
+      
+      int main() {
+          int result = 0;
+          int divisor = 0;
+          
+          if (divisor == 0) {
+              printf("Cannot divide by zero\n");
+              result = -1;
+          }
+          
+          return result;
+      }
+    output: "Cannot divide by zero"
+    comment: "使用返回值和条件判断"
+
+  - name: try_finally
+    description: "清理操作"
+    code: |
+      #include <stdio.h>
+      
+      int main() {
+          FILE* file = fopen("test.txt", "r");
+          
+          if (file == NULL) {
+              printf("File not found\n");
+          }
+          
+          printf("Cleanup\n");
+          return 0;
+      }
+    output: "File not found\nCleanup"
+    comment: "手动执行清理"
+
+  - name: raise_exception
+    description: "错误返回"
+    code: |
+      #include <stdio.h>
+      
+      int validate_age(int age) {
+          if (age < 0) {
+              printf("Invalid age\n");
+              return -1;
+          }
+          return 0;
+      }
+      
+      int main() {
+          validate_age(-1);
+          return 0;
+      }
+    output: "Invalid age"
+    comment: "使用返回值表示错误"
+
+  - name: import_stmt
+    description: "包含头文件"
+    code: |
+      #include <stdio.h>
+      
+      int main() {
+          double result = sqrt(16.0);
+          printf("%f\n", result);
+          return 0;
+      }
+    output: "4.000000"
+    comment: "使用 #include 包含头文件"
+
+  - name: import_from
+    description: "包含特定头文件"
+    code: |
+      #include <math.h>
+      
+      int main() {
+          printf("%f\n", sqrt(16.0));
+          return 0;
+      }
+    output: "4.000000"
+    comment: "直接使用函数"
+
+  - name: import_as
+    description: "宏定义别名"
+    code: |
+      #include <stdio.h>
+      #include <math.h>
+      
+      #define SQRT sqrt
+      
+      int main() {
+          printf("%f\n", SQRT(16.0));
+          return 0;
+      }
+    output: "4.000000"
+    comment: "使用 #define 创建别名"

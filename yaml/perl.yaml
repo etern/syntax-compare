@@ -1,0 +1,364 @@
+items:
+  - name: str
+    description: "字符串定义"
+    code: |
+      my $name = "World";
+      print "Hello, $name!\n";
+    output: "Hello, World!"
+    comment: "字符串使用单引号或双引号，双引号支持插值"
+
+  - name: int
+    description: "整数定义"
+    code: |
+      my $age = 25;
+      print "$age\n";
+    output: "25"
+    comment: "整数类型自动推断"
+
+  - name: float
+    description: "浮点数定义"
+    code: |
+      my $pi = 3.14159;
+      print "$pi\n";
+    output: "3.14159"
+    comment: "浮点数类型自动推断"
+
+  - name: bool
+    description: "布尔值定义"
+    code: |
+      my $is_active = 1;
+      my $is_deleted = 0;
+      print "$is_active\n";
+    output: "1"
+    comment: "布尔值使用 1/0 或空值"
+
+  - name: list
+    description: "数组创建和访问"
+    code: |
+      my @fruits = ("apple", "banana", "cherry");
+      print "$fruits[0]\n";
+    output: "apple"
+    comment: "数组使用 0 开始的索引"
+
+  - name: list_slice
+    description: "数组切片"
+    code: |
+      my @fruits = ("apple", "banana", "cherry");
+      print join(", ", @fruits[1..2]), "\n";
+    output: "banana, cherry"
+    comment: "使用 [start..end] 切片"
+
+  - name: list_append
+    description: "数组添加元素"
+    code: |
+      my @fruits = ("apple");
+      push @fruits, "banana";
+      print join(", ", @fruits), "\n";
+    output: "apple, banana"
+    comment: "push 在末尾添加元素"
+
+  - name: list_comprehension
+    description: "列表推导式"
+    code: |
+      my @squares = map { $_ * $_ } 0..4;
+      print join(", ", @squares), "\n";
+    output: "0, 1, 4, 9, 16"
+    comment: "使用 map 实现"
+
+  - name: dict
+    description: "哈希创建和访问"
+    code: |
+      my %person = (name => "Alice", age => 30);
+      print "$person{name}\n";
+    output: "Alice"
+    comment: "哈希使用键值对存储"
+
+  - name: dict_get
+    description: "哈希安全访问"
+    code: |
+      my %person = (name => "Alice");
+      print $person{age} // 0, "\n";
+    output: "0"
+    comment: "// 提供默认值"
+
+  - name: dict_comprehension
+    description: "哈希推导式"
+    code: |
+      my %squares = map { $_ => $_ * $_ } 0..4;
+      foreach my $k (sort keys %squares) {
+          print "$k: $squares{$k}\n";
+      }
+    output: "0: 0\n1: 1\n2: 4\n3: 9\n4: 16"
+    comment: "使用 map 实现"
+
+  - name: set
+    description: "集合操作"
+    code: |
+      my %colors = (red => 1, blue => 1);
+      print scalar keys %colors, "\n";
+    output: "2"
+    comment: "用哈希模拟集合"
+
+  - name: set_add
+    description: "集合添加元素"
+    code: |
+      my %colors = (red => 1);
+      $colors{blue} = 1;
+      foreach my $k (keys %colors) {
+          print "$k\n";
+      }
+    output: "blue\nred"
+    comment: "直接赋值添加元素"
+
+  - name: if_stmt
+    description: "条件语句"
+    code: |
+      my $x = 10;
+      if ($x > 5) {
+          print "Big\n";
+      } else {
+          print "Small\n";
+      }
+    output: "Big"
+    comment: "使用大括号表示代码块"
+
+  - name: if_elif_else
+    description: "多条件语句"
+    code: |
+      my $score = 85;
+      my $grade;
+      if ($score >= 90) {
+          $grade = "A";
+      } elsif ($score >= 80) {
+          $grade = "B";
+      } else {
+          $grade = "C";
+      }
+      print "$grade\n";
+    output: "B"
+    comment: "elsif 表示 else if"
+
+  - name: ternary
+    description: "三元运算符"
+    code: |
+      my $age = 20;
+      my $status = $age >= 18 ? "adult" : "minor";
+      print "$status\n";
+    output: "adult"
+    comment: "使用 ? : 语法"
+
+  - name: for_loop
+    description: "for 循环"
+    code: |
+      for my $i (0..2) {
+          print "$i\n";
+      }
+    output: "0\n1\n2"
+    comment: "for...in 循环范围"
+
+  - name: for_dict
+    description: "遍历哈希"
+    code: |
+      my %person = (name => "Alice", age => 30);
+      foreach my $key (keys %person) {
+          print "$key: $person{$key}\n";
+      }
+    output: "name: Alice\nage: 30"
+    comment: "keys 和 each 方法遍历"
+
+  - name: while_loop
+    description: "while 循环"
+    code: |
+      my $i = 0;
+      while ($i < 3) {
+          print "$i\n";
+          $i++;
+      }
+    output: "0\n1\n2"
+    comment: "while 循环条件控制"
+
+  - name: break_continue
+    description: "last 和 next"
+    code: |
+      for my $i (0..4) {
+          next if $i == 2;
+          last if $i == 4;
+          print "$i\n";
+      }
+    output: "0\n1\n3"
+    comment: "next 跳过，last 退出"
+
+  - name: function_def
+    description: "子程序定义"
+    code: |
+      sub greet {
+          my ($name) = @_;
+          return "Hello, $name!";
+      }
+      print greet("World"), "\n";
+    output: "Hello, World!"
+    comment: "使用 sub 关键字定义"
+
+  - name: function_params
+    description: "子程序默认参数"
+    code: |
+      sub greet {
+          my ($name, $greeting) = @_;
+          $greeting //= "Hello";
+          return "$greeting, $name!";
+      }
+      print greet("Alice"), "\n";
+    output: "Hello, Alice!"
+    comment: "使用 // 提供默认值"
+
+  - name: function_args_kwargs
+    description: "可变参数"
+    code: |
+      sub func {
+          my @args = @_;
+          foreach my $arg (@args) {
+              print "$arg\n";
+          }
+      }
+      func(1, 2, "Alice");
+    output: "1\n2\nAlice"
+    comment: "@_ 包含所有参数"
+
+  - name: lambda
+    description: "匿名函数"
+    code: |
+      my $square = sub { $_[0] * $_[0] };
+      print $square->(5), "\n";
+    output: "25"
+    comment: "使用 sub 创建"
+
+  - name: class_def
+    description: "类定义"
+    code: |
+      package Person;
+      sub new {
+          my ($class, $name) = @_;
+          return bless {name => $name}, $class;
+      }
+      package main;
+      my $p = Person->new("Alice");
+      print "$p->{name}\n";
+    output: "Alice"
+    comment: "用包和 bless 模拟类"
+
+  - name: class_method
+    description: "实例方法"
+    code: |
+      package Person;
+      sub new {
+          my ($class, $name) = @_;
+          return bless {name => $name}, $class;
+      }
+      sub greet {
+          my $self = shift;
+          return "Hello, $self->{name}!";
+      }
+      package main;
+      my $p = Person->new("Alice");
+      print $p->greet(), "\n";
+    output: "Hello, Alice!"
+    comment: "$self 表示实例引用"
+
+  - name: class_inheritance
+    description: "类继承"
+    code: |
+      package Animal;
+      sub speak { }
+      package Dog;
+      use base 'Animal';
+      sub speak { "Woof!" }
+      package main;
+      my $d = Dog->new();
+      print $d->speak(), "\n";
+    output: "Woof!"
+    comment: "use base 实现继承"
+
+  - name: class_property
+    description: "属性访问"
+    code: |
+      package Circle;
+      sub new {
+          my ($class, $radius) = @_;
+          return bless {_radius => $radius}, $class;
+      }
+      sub radius {
+          my $self = shift;
+          return $self->{_radius};
+      }
+      package main;
+      my $c = Circle->new(5);
+      print $c->radius(), "\n";
+    output: "5"
+    comment: "通过方法访问属性"
+
+  - name: try_stmt
+    description: "异常处理"
+    code: |
+      use Try::Tiny;
+      try {
+          my $result = 10 / 0;
+      } catch {
+          print "Error: $_\n";
+      };
+    output: "Error: Illegal division by zero"
+    comment: "Try::Tiny 捕获异常"
+
+  - name: try_finally
+    description: "finally 块"
+    code: |
+      use Try::Tiny;
+      try {
+          open(my $fh, '<', 'test.txt') or die "File not found";
+      } catch {
+          print "$_\n";
+      } finally {
+          print "Cleanup\n";
+      };
+    output: "File not found\nCleanup"
+    comment: "finally 无论是否异常都执行"
+
+  - name: raise_exception
+    description: "抛出异常"
+    code: |
+      use Try::Tiny;
+      sub validate_age {
+          my ($age) = @_;
+          die "Invalid age" if $age < 0;
+      }
+      try {
+          validate_age(-1);
+      } catch {
+          print "$_\n";
+      };
+    output: "Invalid age"
+    comment: "die 抛出异常"
+
+  - name: import_stmt
+    description: "导入模块"
+    code: |
+      use POSIX qw(sqrt);
+      print sqrt(16), "\n";
+    output: "4"
+    comment: "use 导入模块"
+
+  - name: import_from
+    description: "从模块导入"
+    code: |
+      use POSIX qw(sqrt);
+      print sqrt(16), "\n";
+    output: "4"
+    comment: "use qw 导入特定函数"
+
+  - name: import_as
+    description: "导入别名"
+    code: |
+      use POSIX;
+      sub sqrt_alias { POSIX::sqrt(@_) }
+      print sqrt_alias(16), "\n";
+    output: "4"
+    comment: "使用子程序创建别名"

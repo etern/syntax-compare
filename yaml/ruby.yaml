@@ -1,0 +1,346 @@
+items:
+  - name: str
+    description: "字符串定义"
+    code: |
+      name = "World"
+      puts "Hello, #{name}!"
+    output: "Hello, World!"
+    comment: "字符串使用单引号或双引号，双引号支持插值"
+
+  - name: int
+    description: "整数定义"
+    code: |
+      age = 25
+      puts age
+    output: "25"
+    comment: "整数类型自动推断"
+
+  - name: float
+    description: "浮点数定义"
+    code: |
+      pi = 3.14159
+      puts pi
+    output: "3.14159"
+    comment: "浮点数类型自动推断"
+
+  - name: bool
+    description: "布尔值定义"
+    code: |
+      is_active = true
+      is_deleted = false
+      puts is_active
+    output: "true"
+    comment: "布尔值使用 true/false"
+
+  - name: list
+    description: "数组创建和访问"
+    code: |
+      fruits = ["apple", "banana", "cherry"]
+      puts fruits[0]
+    output: "apple"
+    comment: "数组使用 0 开始的索引"
+
+  - name: list_slice
+    description: "数组切片"
+    code: |
+      fruits = ["apple", "banana", "cherry"]
+      puts fruits[1..2].inspect
+    output: "[\"banana\", \"cherry\"]"
+    comment: "使用 [start..end] 切片"
+
+  - name: list_append
+    description: "数组添加元素"
+    code: |
+      fruits = ["apple"]
+      fruits << "banana"
+      puts fruits.inspect
+    output: "[\"apple\", \"banana\"]"
+    comment: "<< 在末尾添加元素"
+
+  - name: list_comprehension
+    description: "列表推导式"
+    code: |
+      squares = (0..4).map { |x| x * x }
+      puts squares.inspect
+    output: "[0, 1, 4, 9, 16]"
+    comment: "使用 map 方法实现"
+
+  - name: dict
+    description: "哈希创建和访问"
+    code: |
+      person = {name: "Alice", age: 30}
+      puts person[:name]
+    output: "Alice"
+    comment: "哈希使用键值对存储"
+
+  - name: dict_get
+    description: "哈希安全访问"
+    code: |
+      person = {name: "Alice"}
+      puts person.fetch(:age, 0)
+    output: "0"
+    comment: "fetch 方法提供默认值"
+
+  - name: dict_comprehension
+    description: "哈希推导式"
+    code: |
+      squares = (0..4).map { |x| [x, x * x] }.to_h
+      puts squares.inspect
+    output: "{0=>0, 1=>1, 2=>4, 3=>9, 4=>16}"
+    comment: "使用 map 和 to_h 实现"
+
+  - name: set
+    description: "集合创建和操作"
+    code: |
+      colors = Set["red", "blue", "red"]
+      puts colors.size
+    output: "2"
+    comment: "Set 自动去重"
+
+  - name: set_add
+    description: "集合添加元素"
+    code: |
+      colors = Set["red"]
+      colors << "blue"
+      puts colors.inspect
+    output: "#<Set: {\"red\", \"blue\"}>"
+    comment: "<< 添加元素"
+
+  - name: if_stmt
+    description: "条件语句"
+    code: |
+      x = 10
+      if x > 5
+        puts "Big"
+      else
+        puts "Small"
+      end
+    output: "Big"
+    comment: "使用 end 表示代码块"
+
+  - name: if_elif_else
+    description: "多条件语句"
+    code: |
+      score = 85
+      if score >= 90
+        grade = "A"
+      elsif score >= 80
+        grade = "B"
+      else
+        grade = "C"
+      end
+      puts grade
+    output: "B"
+    comment: "elsif 表示 else if"
+
+  - name: ternary
+    description: "三元运算符"
+    code: |
+      age = 20
+      status = age >= 18 ? "adult" : "minor"
+      puts status
+    output: "adult"
+    comment: "使用 ? : 语法"
+
+  - name: for_loop
+    description: "for 循环"
+    code: |
+      for i in 0..2
+        puts i
+      end
+    output: "0\n1\n2"
+    comment: "for...in 循环范围"
+
+  - name: for_dict
+    description: "遍历哈希"
+    code: |
+      person = {name: "Alice", age: 30}
+      person.each do |key, value|
+        puts "#{key}: #{value}"
+      end
+    output: "name: Alice\nage: 30"
+    comment: "each 方法遍历"
+
+  - name: while_loop
+    description: "while 循环"
+    code: |
+      i = 0
+      while i < 3
+        puts i
+        i += 1
+      end
+    output: "0\n1\n2"
+    comment: "while 循环条件控制"
+
+  - name: break_continue
+    description: "break 和 next"
+    code: |
+      for i in 0..4
+        next if i == 2
+        break if i == 4
+        puts i
+      end
+    output: "0\n1\n3"
+    comment: "next 跳过，break 退出"
+
+  - name: function_def
+    description: "方法定义"
+    code: |
+      def greet(name)
+        "Hello, #{name}!"
+      end
+      puts greet("World")
+    output: "Hello, World!"
+    comment: "使用 def 关键字定义"
+
+  - name: function_params
+    description: "方法默认参数"
+    code: |
+      def greet(name, greeting = "Hello")
+        "#{greeting}, #{name}!"
+      end
+      puts greet("Alice")
+    output: "Hello, Alice!"
+    comment: "参数可以设置默认值"
+
+  - name: function_args_kwargs
+    description: "可变参数"
+    code: |
+      def func(*args, **kwargs)
+        p args
+        p kwargs
+      end
+      func(1, 2, name: "Alice")
+    output: "[1, 2]\n{:name=>\"Alice\"}"
+    comment: "*args 位置参数，**kwargs 关键字参数"
+
+  - name: lambda
+    description: "lambda 函数"
+    code: |
+      square = ->(x) { x * x }
+      puts square.call(5)
+    output: "25"
+    comment: "使用 -> 语法创建"
+
+  - name: class_def
+    description: "类定义"
+    code: |
+      class Person
+        def initialize(name)
+          @name = name
+        end
+        attr_reader :name
+      end
+      p = Person.new("Alice")
+      puts p.name
+    output: "Alice"
+    comment: "使用 class 关键字"
+
+  - name: class_method
+    description: "实例方法"
+    code: |
+      class Person
+        def initialize(name)
+          @name = name
+        end
+        def greet
+          "Hello, #{@name}!"
+        end
+      end
+      p = Person.new("Alice")
+      puts p.greet
+    output: "Hello, Alice!"
+    comment: "@name 表示实例变量"
+
+  - name: class_inheritance
+    description: "类继承"
+    code: |
+      class Animal
+        def speak; end
+      end
+      class Dog < Animal
+        def speak
+          "Woof!"
+        end
+      end
+      d = Dog.new
+      puts d.speak
+    output: "Woof!"
+    comment: "< 表示继承"
+
+  - name: class_property
+    description: "属性访问器"
+    code: |
+      class Circle
+        attr_reader :radius
+        def initialize(radius)
+          @radius = radius
+        end
+      end
+      c = Circle.new(5)
+      puts c.radius
+    output: "5"
+    comment: "attr_reader 创建只读属性"
+
+  - name: try_stmt
+    description: "异常处理"
+    code: |
+      begin
+        result = 10 / 0
+      rescue ZeroDivisionError
+        puts "Cannot divide by zero"
+      end
+    output: "Cannot divide by zero"
+    comment: "rescue 捕获异常"
+
+  - name: try_finally
+    description: "ensure 块"
+    code: |
+      begin
+        file = File.open("test.txt", "r")
+      rescue Errno::ENOENT
+        puts "File not found"
+      ensure
+        puts "Cleanup"
+      end
+    output: "File not found\nCleanup"
+    comment: "ensure 无论是否异常都执行"
+
+  - name: raise_exception
+    description: "抛出异常"
+    code: |
+      def validate_age(age)
+        raise "Invalid age" if age < 0
+      end
+      begin
+        validate_age(-1)
+      rescue => e
+        puts e.message
+      end
+    output: "Invalid age"
+    comment: "raise 抛出异常"
+
+  - name: import_stmt
+    description: "导入模块"
+    code: |
+      require "math"
+      puts Math.sqrt(16)
+    output: "4.0"
+    comment: "require 导入模块"
+
+  - name: import_from
+    description: "从模块导入"
+    code: |
+      require "math"
+      include Math
+      puts sqrt(16)
+    output: "4.0"
+    comment: "include 混入模块方法"
+
+  - name: import_as
+    description: "导入别名"
+    code: |
+      m = Math
+      puts m.sqrt(16)
+    output: "4.0"
+    comment: "使用变量创建别名"
