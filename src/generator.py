@@ -44,7 +44,8 @@ def main():
     yaml_dir = Path(__file__).parent.parent / 'yaml'
     template_path = Path(__file__).parent / 'template.html'
     output_path = Path(__file__).parent.parent / 'docs' / 'index.html'
-    
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+
     languages = load_yaml_files(yaml_dir)
     ordered_names = get_ordered_names(languages, base_lang='python')
     generate_html(languages, ordered_names, template_path, output_path)
