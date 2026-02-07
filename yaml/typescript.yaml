@@ -1,0 +1,357 @@
+items:
+  - name: str
+    description: "字符串定义"
+    code: |
+      const name: string = "World";
+      console.log(`Hello, ${name}!`);
+    output: "Hello, World!"
+    comment: "模板字符串使用反引号"
+
+  - name: int
+    description: "整数定义"
+    code: |
+      const age: number = 25;
+      console.log(age);
+    output: "25"
+    comment: "TypeScript 使用 number 类型"
+
+  - name: float
+    description: "浮点数定义"
+    code: |
+      const pi: number = 3.14159;
+      console.log(pi);
+    output: "3.14159"
+    comment: "number 类型包含整数和浮点数"
+
+  - name: bool
+    description: "布尔值定义"
+    code: |
+      const isActive: boolean = true;
+      const isDeleted: boolean = false;
+      console.log(isActive);
+    output: "true"
+    comment: "boolean 类型"
+
+  - name: list
+    description: "数组创建和访问"
+    code: |
+      const fruits: string[] = ["apple", "banana", "cherry"];
+      console.log(fruits[0]);
+    output: "apple"
+    comment: "使用 type[] 语法声明数组"
+
+  - name: list_slice
+    description: "数组切片"
+    code: |
+      const fruits: string[] = ["apple", "banana", "cherry"];
+      console.log(fruits.slice(1, 3));
+    output: "[ 'banana', 'cherry' ]"
+    comment: "slice 返回新数组"
+
+  - name: list_append
+    description: "数组添加元素"
+    code: |
+      const fruits: string[] = ["apple"];
+      fruits.push("banana");
+      console.log(fruits);
+    output: "[ 'apple', 'banana' ]"
+    comment: "push 修改原数组"
+
+  - name: list_comprehension
+    description: "数组映射"
+    code: |
+      const squares: number[] = Array.from({length: 5}, (_, i) => i * i);
+      console.log(squares);
+    output: "[ 0, 1, 4, 9, 16 ]"
+    comment: "使用 Array.from 或 map"
+
+  - name: dict
+    description: "对象创建和访问"
+    code: |
+      const person: { [key: string]: any } = {name: "Alice", age: 30};
+      console.log(person.name);
+    output: "Alice"
+    comment: "TypeScript 使用对象字面量"
+
+  - name: dict_get
+    description: "对象安全访问"
+    code: |
+      const person: { [key: string]: any } = {name: "Alice"};
+      console.log(person.age ?? 0);
+    output: "0"
+    comment: "?? 空值合并运算符"
+
+  - name: dict_comprehension
+    description: "对象生成"
+    code: |
+      const squares: { [key: number]: number } = Object.fromEntries(
+          Array.from({length: 5}, (_, i) => [i, i * i])
+      );
+      console.log(squares);
+    output: "{ '0': 0, '1': 1, '2': 4, '3': 9, '4': 16 }"
+    comment: "使用 Object.fromEntries"
+
+  - name: set
+    description: "集合创建和操作"
+    code: |
+      const colors: Set<string> = new Set(["red", "blue", "red"]);
+      console.log(colors.size);
+    output: "2"
+    comment: "Set 自动去重"
+
+  - name: set_add
+    description: "集合添加元素"
+    code: |
+      const colors: Set<string> = new Set(["red"]);
+      colors.add("blue");
+      console.log(colors);
+    output: "Set(2) { 'red', 'blue' }"
+    comment: "add 方法添加元素"
+
+  - name: if_stmt
+    description: "条件语句"
+    code: |
+      const x: number = 10;
+      if (x > 5) {
+          console.log("Big");
+      } else {
+          console.log("Small");
+      }
+    output: "Big"
+    comment: "与 JavaScript 相同"
+
+  - name: if_elif_else
+    description: "多条件语句"
+    code: |
+      const score: number = 85;
+      let grade: string;
+      if (score >= 90) {
+          grade = "A";
+      } else if (score >= 80) {
+          grade = "B";
+      } else {
+          grade = "C";
+      }
+      console.log(grade);
+    output: "B"
+    comment: "else if 表示多条件"
+
+  - name: ternary
+    description: "三元运算符"
+    code: |
+      const age: number = 20;
+      const status: string = age >= 18 ? "adult" : "minor";
+      console.log(status);
+    output: "adult"
+    comment: "简洁的条件表达式"
+
+  - name: for_loop
+    description: "for 循环"
+    code: |
+      for (let i = 0; i < 3; i++) {
+          console.log(i);
+      }
+    output: "0\n1\n2"
+    comment: "传统 C 风格 for 循环"
+
+  - name: for_dict
+    description: "遍历对象"
+    code: |
+      const person: { [key: string]: any } = {name: "Alice", age: 30};
+      for (const [key, value] of Object.entries(person)) {
+          console.log(`${key}: ${value}`);
+      }
+    output: "name: Alice\nage: 30"
+    comment: "Object.entries 获取键值对"
+
+  - name: while_loop
+    description: "while 循环"
+    code: |
+      let i = 0;
+      while (i < 3) {
+          console.log(i);
+          i++;
+      }
+    output: "0\n1\n2"
+    comment: "while 循环条件控制"
+
+  - name: break_continue
+    description: "break 和 continue"
+    code: |
+      for (let i = 0; i < 5; i++) {
+          if (i === 2) {
+              continue;
+          }
+          if (i === 4) {
+              break;
+          }
+          console.log(i);
+      }
+    output: "0\n1\n3"
+    comment: "continue 跳过，break 退出"
+
+  - name: function_def
+    description: "函数定义"
+    code: |
+      function greet(name: string): string {
+          return `Hello, ${name}!`;
+      }
+      console.log(greet("World"));
+    output: "Hello, World!"
+    comment: "添加参数和返回类型注解"
+
+  - name: function_params
+    description: "函数默认参数"
+    code: |
+      function greet(name: string, greeting: string = "Hello"): string {
+          return `${greeting}, ${name}!`;
+      }
+      console.log(greet("Alice"));
+    output: "Hello, Alice!"
+    comment: "参数可以设置默认值"
+
+  - name: function_args_kwargs
+    description: "剩余参数"
+    code: |
+      function sum(...numbers: number[]): number {
+          return numbers.reduce((a, b) => a + b, 0);
+      }
+      console.log(sum(1, 2, 3, 4, 5));
+    output: "15"
+    comment: "... 收集剩余参数为数组"
+
+  - name: lambda
+    description: "箭头函数"
+    code: |
+      const square = (x: number): number => x * x;
+      console.log(square(5));
+    output: "25"
+    comment: "箭头函数简洁语法"
+
+  - name: class_def
+    description: "类定义"
+    code: |
+      class Person {
+          name: string;
+          constructor(name: string) {
+              this.name = name;
+          }
+      }
+      const p = new Person("Alice");
+      console.log(p.name);
+    output: "Alice"
+    comment: "使用 class 关键字"
+
+  - name: class_method
+    description: "类方法"
+    code: |
+      class Person {
+          name: string;
+          constructor(name: string) {
+              this.name = name;
+          }
+          greet(): string {
+              return `Hello, ${this.name}!`;
+          }
+      }
+      const p = new Person("Alice");
+      console.log(p.greet());
+    output: "Hello, Alice!"
+    comment: "this 表示实例本身"
+
+  - name: class_inheritance
+    description: "类继承"
+    code: |
+      class Animal {
+          speak(): string {
+              return "";
+          }
+      }
+      class Dog extends Animal {
+          speak(): string {
+              return "Woof!";
+          }
+      }
+      const d = new Dog();
+      console.log(d.speak());
+    output: "Woof!"
+    comment: "extends 继承父类"
+
+  - name: class_property
+    description: "getter"
+    code: |
+      class Circle {
+          private _radius: number;
+          constructor(radius: number) {
+              this._radius = radius;
+          }
+          get area(): number {
+              return Math.PI * this._radius * this._radius;
+          }
+      }
+      const c = new Circle(5);
+      console.log(c.area);
+    output: "78.53981633974483"
+    comment: "get 关键字定义 getter"
+
+  - name: try_stmt
+    description: "异常处理"
+    code: |
+      try {
+          const result: number = 10 / 0;
+          console.log(result);
+      } catch (e) {
+          console.log("Error occurred");
+      }
+    output: "Infinity"
+    comment: "try-catch 捕获异常"
+
+  - name: try_finally
+    description: "finally 块"
+    code: |
+      try {
+          console.log("Try block");
+      } catch (e) {
+          console.log("Catch block");
+      } finally {
+          console.log("Finally block");
+      }
+    output: "Try block\nFinally block"
+    comment: "finally 无论是否异常都执行"
+
+  - name: raise_exception
+    description: "抛出异常"
+    code: |
+      function validateAge(age: number): void {
+          if (age < 0) {
+              throw new Error("Invalid age");
+          }
+      }
+      try {
+          validateAge(-1);
+      } catch (e) {
+          console.log("Invalid age");
+      }
+    output: "Invalid age"
+    comment: "throw 抛出异常"
+
+  - name: import_stmt
+    description: "导入模块"
+    code: |
+      import * as fs from "fs";
+    output: ""
+    comment: "ES6 模块导入"
+
+  - name: import_from
+    description: "命名导入"
+    code: |
+      import { readFileSync } from "fs";
+    output: ""
+    comment: "从模块导入特定导出"
+
+  - name: import_as
+    description: "导入别名"
+    code: |
+      import { readFileSync as read } from "fs";
+    output: ""
+    comment: "as 关键字创建别名"

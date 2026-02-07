@@ -1,0 +1,346 @@
+items:
+  - name: str
+    description: "字符串定义"
+    code: |
+      String name = "World";
+      print("Hello, $name!");
+    output: "Hello, World!"
+    comment: "字符串使用双引号，$变量 用于插值"
+
+  - name: int
+    description: "整数定义"
+    code: |
+      int age = 25;
+      print(age);
+    output: "25"
+    comment: "int 类型"
+
+  - name: float
+    description: "浮点数定义"
+    code: |
+      double pi = 3.14159;
+      print(pi);
+    output: "3.14159"
+    comment: "double 类型"
+
+  - name: bool
+    description: "布尔值定义"
+    code: |
+      bool isActive = true;
+      bool isDeleted = false;
+      print(isActive);
+    output: "true"
+    comment: "bool 类型"
+
+  - name: list
+    description: "列表创建和访问"
+    code: |
+      List<String> fruits = ["apple", "banana", "cherry"];
+      print(fruits[0]);
+    output: "apple"
+    comment: "使用 List 类型和方括号"
+
+  - name: list_slice
+    description: "列表切片"
+    code: |
+      List<String> fruits = ["apple", "banana", "cherry"];
+      print(fruits.sublist(1, 3));
+    output: "[banana, cherry]"
+    comment: "使用 sublist 方法"
+
+  - name: list_append
+    description: "列表添加元素"
+    code: |
+      List<String> fruits = ["apple"];
+      fruits.add("banana");
+      print(fruits);
+    output: "[apple, banana]"
+    comment: "add 方法在末尾添加"
+
+  - name: list_comprehension
+    description: "列表生成"
+    code: |
+      List<int> squares = [for (int i = 0; i < 5; i++) i * i];
+      print(squares);
+    output: "[0, 1, 4, 9, 16]"
+    comment: "Dart 2.3+ 支持集合 for"
+
+  - name: dict
+    description: "Map 创建和访问"
+    code: |
+      Map<String, dynamic> person = {"name": "Alice", "age": 30};
+      print(person["name"]);
+    output: "Alice"
+    comment: "使用 Map 类型"
+
+  - name: dict_get
+    description: "Map 安全访问"
+    code: |
+      Map<String, dynamic> person = {"name": "Alice"};
+      print(person["age"] ?? 0);
+    output: "0"
+    comment: "使用 ?? 提供默认值"
+
+  - name: dict_comprehension
+    description: "Map 生成"
+    code: |
+      Map<int, int> squares = {for (int i = 0; i < 5; i++) i: i * i};
+      print(squares);
+    output: "{0: 0, 1: 1, 2: 4, 3: 9, 4: 16}"
+    comment: "Dart 2.3+ 支持集合 for"
+
+  - name: set
+    description: "集合创建和操作"
+    code: |
+      Set<String> colors = {"red", "blue", "red"};
+      print(colors.length);
+    output: "2"
+    comment: "Set 自动去重"
+
+  - name: set_add
+    description: "集合添加元素"
+    code: |
+      Set<String> colors = {"red"};
+      colors.add("blue");
+      print(colors);
+    output: "{red, blue}"
+    comment: "add 方法添加元素"
+
+  - name: if_stmt
+    description: "条件语句"
+    code: |
+      int x = 10;
+      if (x > 5) {
+          print("Big");
+      } else {
+          print("Small");
+      }
+    output: "Big"
+    comment: "条件必须用括号包裹"
+
+  - name: if_elif_else
+    description: "多条件语句"
+    code: |
+      int score = 85;
+      String grade;
+      if (score >= 90) {
+          grade = "A";
+      } else if (score >= 80) {
+          grade = "B";
+      } else {
+          grade = "C";
+      }
+      print(grade);
+    output: "B"
+    comment: "else if 表示多条件"
+
+  - name: ternary
+    description: "三元运算符"
+    code: |
+      int age = 20;
+      String status = age >= 18 ? "adult" : "minor";
+      print(status);
+    output: "adult"
+    comment: "简洁的条件表达式"
+
+  - name: for_loop
+    description: "for 循环"
+    code: |
+      for (int i = 0; i < 3; i++) {
+          print(i);
+      }
+    output: "0\n1\n2"
+    comment: "传统 C 风格 for 循环"
+
+  - name: for_dict
+    description: "遍历 Map"
+    code: |
+      Map<String, dynamic> person = {"name": "Alice", "age": 30};
+      person.forEach((key, value) {
+          print("$key: $value");
+      });
+    output: "name: Alice\nage: 30"
+    comment: "使用 forEach 遍历"
+
+  - name: while_loop
+    description: "while 循环"
+    code: |
+      int i = 0;
+      while (i < 3) {
+          print(i);
+          i++;
+      }
+    output: "0\n1\n2"
+    comment: "while 循环条件控制"
+
+  - name: break_continue
+    description: "break 和 continue"
+    code: |
+      for (int i = 0; i < 5; i++) {
+          if (i == 2) {
+              continue;
+          }
+          if (i == 4) {
+              break;
+          }
+          print(i);
+      }
+    output: "0\n1\n3"
+    comment: "continue 跳过，break 退出"
+
+  - name: function_def
+    description: "函数定义"
+    code: |
+      String greet(String name) {
+          return "Hello, $name!";
+      }
+      print(greet("World"));
+    output: "Hello, World!"
+    comment: "使用返回值类型声明"
+
+  - name: function_params
+    description: "函数默认参数"
+    code: |
+      String greet(String name, {String greeting = "Hello"}) {
+          return "$greeting, $name!";
+      }
+      print(greet("Alice"));
+    output: "Hello, Alice!"
+    comment: "可选命名参数使用花括号"
+
+  - name: function_args_kwargs
+    description: "可变参数"
+    code: |
+      int sum(List<int> numbers) {
+          return numbers.reduce((a, b) => a + b);
+      }
+      print(sum([1, 2, 3, 4, 5]));
+    output: "15"
+    comment: "Dart 使用 List 作为可变参数"
+
+  - name: lambda
+    description: "箭头函数"
+    code: |
+      var square = (int x) => x * x;
+      print(square(5));
+    output: "25"
+    comment: "使用箭头函数语法 =>"
+
+  - name: class_def
+    description: "类定义"
+    code: |
+      class Person {
+          String name;
+          Person(this.name);
+      }
+      var p = Person("Alice");
+      print(p.name);
+    output: "Alice"
+    comment: "this.name 为构造器简写语法"
+
+  - name: class_method
+    description: "类方法"
+    code: |
+      class Person {
+          String name;
+          Person(this.name);
+          String greet() {
+              return "Hello, $name!";
+          }
+      }
+      var p = Person("Alice");
+      print(p.greet());
+    output: "Hello, Alice!"
+    comment: "方法直接定义在类中"
+
+  - name: class_inheritance
+    description: "类继承"
+    code: |
+      class Animal {
+          String speak() => "";
+      }
+      class Dog extends Animal {
+          @override
+          String speak() => "Woof!";
+      }
+      var d = Dog();
+      print(d.speak());
+    output: "Woof!"
+    comment: "extends 继承，@override 标记重写"
+
+  - name: class_property
+    description: "getter"
+    code: |
+      class Circle {
+          double radius;
+          Circle(this.radius);
+          double get area => 3.14159 * radius * radius;
+      }
+      var c = Circle(5);
+      print(c.area);
+    output: "78.53975"
+    comment: "使用 get 关键字定义 getter"
+
+  - name: try_stmt
+    description: "异常处理"
+    code: |
+      try {
+          int result = 10 ~/ 0;
+      } catch (e) {
+          print("Cannot divide by zero");
+      }
+    output: "Cannot divide by zero"
+    comment: "~/ 为整除运算符"
+
+  - name: try_finally
+    description: "finally 块"
+    code: |
+      try {
+          print("Try block");
+      } catch (e) {
+          print("Catch block");
+      } finally {
+          print("Finally block");
+      }
+    output: "Try block\nFinally block"
+    comment: "finally 无论是否异常都执行"
+
+  - name: raise_exception
+    description: "抛出异常"
+    code: |
+      void validateAge(int age) {
+          if (age < 0) {
+              throw ArgumentError("Invalid age");
+          }
+      }
+      try {
+          validateAge(-1);
+      } catch (e) {
+          print("Invalid age");
+      }
+    output: "Invalid age"
+    comment: "throw 抛出异常"
+
+  - name: import_stmt
+    description: "导入库"
+    code: |
+      import "dart:math";
+      print(sqrt(16));
+    output: "4.0"
+    comment: "使用 import 导入"
+
+  - name: import_from
+    description: "显示导入"
+    code: |
+      import "dart:math" show sqrt;
+      print(sqrt(16));
+    output: "4.0"
+    comment: "show 只导入特定函数"
+
+  - name: import_as
+    description: "导入别名"
+    code: |
+      import "dart:math" as m;
+      print(m.sqrt(16));
+    output: "4.0"
+    comment: "as 创建别名"
