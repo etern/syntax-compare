@@ -23,15 +23,23 @@ def get_ordered_names(languages, base_lang='python'):
     return list(base_data.keys())
 
 
-def generate_html(languages, ordered_names, template_path, output_path):
+def generate_data_json(languages, ordered_names, output_path):
+    """生成数据 JSON 文件"""
+    data = {
+        'languages': languages,
+        'orderedNames': ordered_names
+    }
+    with open(output_path, 'w', encoding='utf-8') as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
+
+
+def generate_html(lang_names, template_path, output_path):
     """生成 HTML 文件"""
     env = Environment(loader=FileSystemLoader(str(template_path.parent)))
     template = env.get_template(template_path.name)
     
     html = template.render(
-        languages=languages,
-        ordered_names=ordered_names,
-        lang_names=list(languages.keys()),
+        lang_names=lang_names,
         default_left='python',
         default_right='javascript'
     )
@@ -43,13 +51,20 @@ def generate_html(languages, ordered_names, template_path, output_path):
 def main():
     yaml_dir = Path(__file__).parent.parent / 'yaml'
     template_path = Path(__file__).parent / 'template.html'
-    output_path = Path(__file__).parent.parent / 'docs' / 'index.html'
-    output_path.parent.mkdir(parents=True, exist_ok=True)
+    docs_dir = Path(__file__).parent.parent / 'docs'
+    docs_dir.mkdir(parents=True, exist_ok=True)
+    
+    html_path = docs_dir / 'index.html'
+    data_path = docs_dir / 'data.json'
 
     languages = load_yaml_files(yaml_dir)
     ordered_names = get_ordered_names(languages, base_lang='python')
-    generate_html(languages, ordered_names, template_path, output_path)
-    print(f"Generated {output_path}")
+    
+    generate_data_json(languages, ordered_names, data_path)
+    generate_html(list(languages.keys()), template_path, html_path)
+    
+    print(f"Generated {html_path}")
+    print(f"Generated {data_path}")
 
 
 if __name__ == '__main__':
